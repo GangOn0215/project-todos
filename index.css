@@ -1,0 +1,143 @@
+/* @import url('./font/UhBee_MiMi.ttf'); */
+@font-face {
+  font-family: 'NotoSans_Italic';
+  src: url('./font/NotoSans_Italic.ttf');
+}
+@font-face {
+  font-family: 'NotoSans_Regular';
+  src: url('./font/NotoSans_Regular.ttf');
+}
+
+@font-face {
+  font-family: 'NotoSans_Bold';
+  src: url('./font/NotoSans_Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Dancing_Script';
+  src: url('./font/Dancing_Script.ttf');
+}
+
+@font-face {
+  font-family: 'DMSans-Regular';
+  src: url('./font/DMSans-Regular.ttf');
+}
+header {
+  height: auto;
+  border: 1px solid black;
+  border-top: none;
+  border-bottom: none;
+}
+
+body {
+  width: 75em;
+  margin: 0 auto;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Dancing_Script';
+  font-weight: bold;
+  font-size: 36px;
+  height: 150px;
+  /* height: calc(12.5em - 3.125em); */
+  background-image: url("img/banner.jpg");
+  /* object-fit: cover; */
+}
+
+.banner img {
+  height: 100%;
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  height: 3.125em;
+  border-top: 1px solid black;
+  justify-content: space-between;
+}
+
+nav ul {
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+nav ul li {
+  flex-basis: auto;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: 'Dancing_Script';
+  /* font-family: 'DMSans-Regular'; */
+}
+
+.button {
+  width: 65px;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 0;
+  cursor: pointer;
+}
+
+.account {
+  display: flex;
+  padding: 0px 10px;
+  align-items: center;
+  border-left: 1px solid black;
+  font-family: 'NotoSans_Regular';
+  font-weight: 400;
+  /* font-size:  ; */
+}
+
+.account input {
+  font-size: 15px;
+}
+.circle {
+  width: 2em;
+  height: 2em;
+  background-color: #AEDDEF;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+.content-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  height: calc(100% - 12.5em);
+}
+.todos-container {
+  width: 300px;
+  height: 400px;
+  padding: 10px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  border: 1px solid black;
+  font-family: 'Dancing_Script';
+}
+.todos-header {
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  /* justify-content: center; */
+  height: 20%;
+}
+.todos-body {
+  height: 60%;
+}
+.todos-footer {
+  height: 20%;
+}
+footer {
+  height: 150px;
+  border: 1px solid black;
+  border-top: none;
+  border-bottom: none;
+}
