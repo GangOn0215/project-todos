@@ -32,7 +32,9 @@ body {
   width: 75em;
   margin: 0 auto;
 }
-
+input {
+  box-sizing: border-box;
+}
 .banner {
   display: flex;
   align-items: center;

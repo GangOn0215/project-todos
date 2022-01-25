@@ -1,0 +1,65 @@
+.register-container {
+  width: 300px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #444;
+}
+.register-container > * {
+  border-bottom: 1px solid #444;
+}
+.register-container:last-child {
+  border-bottom: none;
+}
+.register-container button {
+  background-color: white;
+  border: 1px solid #444;
+}
+.register-container input {
+  border: 1px solid #444;
+}
+.register-header,
+.register-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register-header {
+  height: 75px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.register-body {
+  display: flex;
+  padding: 10px;
+  padding-bottom: 8px;
+  height: auto;
+  border-bottom: 0;
+}
+.register-body .register-btn {
+  width: 30%;
+  margin-left: 5%;
+}
+.register-body .input-account input {
+  padding: 5px;
+  height: 30px;
+  width: 100%;
+  margin: none;
+}
+.register-body .input-account input {
+  margin-bottom: 5px;
+}
+.register-body .input-account input:last-child {
+  margin-bottom: 0px;
+}
+.register-footer {
+  height: 45px;
+  padding: 10px;
+  padding-top: 0px;
+  flex-direction: column;
+}
+.register-footer button {
+  width: 100%;
+  height: 35px;
+}
