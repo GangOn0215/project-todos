@@ -1,62 +1,81 @@
-.login-container {
+.account-container {
   width: 300px;
   height: auto;
   display: flex;
   flex-direction: column;
   border: 1px solid #444;
 }
-.login-container > * {
+.account-container > * {
   border-bottom: 1px solid #444;
 }
-.login-container:last-child {
+.account-container:last-child {
   border-bottom: none;
 }
-.login-container button {
+.account-container button {
   background-color: white;
   border: 1px solid #444;
 }
-.login-container input {
+.account-container input {
   border: 1px solid #444;
 }
-.login-header,
-.login-footer {
+.account-header,
+.account-footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 75px;
 }
-.login-header {
+.account-header {
+  height: 75px;
   font-size: 20px;
   font-weight: bold;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-.login-body {
+.account-body {
   display: flex;
   padding: 10px;
   height: auto;
-  border-bottom: none;
+  border-bottom: 0;
 }
-.login-body .login-btn {
+.account-body .login-btn {
   width: 30%;
   margin-left: 5%;
 }
-.login-body .input-account input {
+.account-body .input-account input {
+  padding: 5px;
   height: 30px;
   width: 100%;
   margin: none;
 }
-.login-body .input-account input:first-child {
-  margin-bottom: 5px;
-}
-.login-footer {
+.account-footer {
   padding: 10px;
   padding-top: 0;
   flex-direction: column;
 }
+.account-footer button {
+  width: 100%;
+  height: 30px;
+}
+.login-body .input-account input:first-child {
+  margin-bottom: 5px;
+}
 .login-footer button:first-child {
   margin-bottom: 5px;
 }
-.login-footer button {
-  width: 100%;
-  height: 30px;
+.register-header,
+.register-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register-body {
+  padding-bottom: 8px;
+}
+.register-body .input-account input {
+  margin-bottom: 5px;
+}
+.register-body .input-account input:last-child {
+  margin-bottom: 0px;
+}
+.register-footer {
+  height: 45px;
 }
