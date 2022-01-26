@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
+  <script src="/js/common.js"></script>
+  <link rel="stylesheet" href="/assets/fontawesome/css/all.css">
   <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="/css/index.css">
   <link rel="stylesheet" href="/css/account.css">
@@ -21,7 +22,7 @@
       </ul>
       <div class="account">
         <div class="circle"></div>
-        <input type="button" value="login" class="button">
+        <button id="login-page-btn">login</button>
       </div>
     </nav>
   </header>
@@ -33,17 +34,22 @@
       <div class="account-body login-body">
         <div class="input-account">
           <input type="text">
-          <input type="text">
+          <input type="password">
         </div>
         <button class="account-btn login-btn">Login</button>
       </div>
       <div class="account-footer login-footer">
-        <button>Register Account</button>
+        <button id="register-btn">Register Account</button>
         <button>Forgot you'r Account?</button>
       </div>
     </div>
   </section>
   <aside></aside>
   <footer></footer>
+  <script>
+    document.getElementById('register-btn').addEventListener('click', (e) => {
+      window.location.href = '/html/account/register.html';
+    });
+  </script>
 </body>
 </html>

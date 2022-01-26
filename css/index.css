@@ -71,10 +71,9 @@ nav ul li {
   font-size: 25px;
   font-weight: bold;
   font-family: 'Dancing_Script';
-  /* font-family: 'DMSans-Regular'; */
 }
 
-.button {
+#login-page-btn {
   width: 65px;
   background-color: white;
   border: none;
@@ -82,7 +81,6 @@ nav ul li {
   padding: 0;
   cursor: pointer;
 }
-
 .account {
   display: flex;
   padding: 0px 10px;
@@ -125,9 +123,6 @@ nav ul li {
 .todos-container:last-child {
   border-bottom: none;
 }
-/* .todos-container :nth-child(3) {
-  border-bottom: none;
-} */
 .todos-header,
 .todos-footer {
   display: flex;
