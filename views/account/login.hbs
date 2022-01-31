@@ -1,0 +1,24 @@
+<div class="account-container">
+  <div class="account-header login-header">
+    <span>Welcome back</span>
+  </div>
+  <div class="account-body login-body">
+    <div class="input-account">
+      <input type="text" placeholder="Username">
+      <input type="password" placeholder="Password">
+    </div>
+    <button class="account-btn login-btn">Login</button>
+  </div>
+  <div class="account-footer login-footer">
+    <button id="register-page-btn">Register Account</button>
+    <button>Forgot you'r Account?</button>
+  </div>
+</div>
+
+<script>
+  window.onload = () => {
+  document.getElementById('register-page-btn').addEventListener('click', (e) => {
+    window.location.href = '/account/register';
+  });
+}
+</script>

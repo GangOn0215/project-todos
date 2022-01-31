@@ -1,0 +1,25 @@
+{
+  "name": "project-todos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js --ext .js, .hbs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GangOn0215/project-todos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GangOn0215/project-todos/issues"
+  },
+  "homepage": "https://github.com/GangOn0215/project-todos#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
+    "mysql": "^2.18.1"
+  }
+}

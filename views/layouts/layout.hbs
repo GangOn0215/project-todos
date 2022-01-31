@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,45 +12,28 @@
   <link rel="stylesheet" href="/css/account.css">
   <title>Document</title>
 </head>
+
 <body>
   <header>
     <div class="banner">TODO'S</div>
     <nav>
       <ul>
-        <li><a href="">about</a></li>
+        <li><a href="/">about</a></li>
         <li><a href="">daily</a></li>
         <li><a href="">weekly</a></li>
       </ul>
       <div class="account">
         <div class="circle"></div>
-        <button id="login-page-btn">login</button>
+        <a href="/account/login">login</a>
+        {{!-- <button id="login-page-btn">login</button> --}}
       </div>
     </nav>
   </header>
   <section class="content-wrap">
-    <div class="account-container">
-      <div class="account-header login-header">
-        <span>Welcome back</span>
-      </div>
-      <div class="account-body login-body">
-        <div class="input-account">
-          <input type="text">
-          <input type="password">
-        </div>
-        <button class="account-btn login-btn">Login</button>
-      </div>
-      <div class="account-footer login-footer">
-        <button id="register-btn">Register Account</button>
-        <button>Forgot you'r Account?</button>
-      </div>
-    </div>
+    {{{body}}}
   </section>
   <aside></aside>
   <footer></footer>
-  <script>
-    document.getElementById('register-btn').addEventListener('click', (e) => {
-      window.location.href = '/html/account/register.html';
-    });
-  </script>
 </body>
+
 </html>
