@@ -23,8 +23,8 @@
 
       xhr.addEventListener('load', () => {
         result = JSON.parse(xhr.responseText);
-        document.querySelector('.ajax-result').innerHTML = result.email;
-        console.log(result.email);
+        document.querySelector('.ajax-result').innerHTML = result.nickname;
+        console.log(result.nickname);
       });
     }
   </script>
