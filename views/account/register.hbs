@@ -3,15 +3,22 @@
     <span>Reigster</span>
   </div>
   <div class="account-body register-body">
-    <div class="input-account">
-      <input type="text" placeholder="id">
-      <input type="password" placeholder="password">
+    <form action="/account/register" method="post" class="input-account">
+      <input type="text" placeholder="id" name="user_id">
+      <input type="password" placeholder="password" name="user_pw">
       <input type="password" placeholder="password confirm">
-      <input type="text" placeholder="nickname">
-      <input type="text" placeholder="email">
-    </div>
-  </div>
-  <div class="account-footer register-footer">
-    <button class="account-btn register-btn">Register</button>
+      <input type="text" placeholder="nickname" name="user_nickname">
+      <input type="text" placeholder="email" name="user_email">
+      <div class="account-footer register-footer">
+        <button class="account-btn register-btn">Register</button>
+      </div>
+    </form>
   </div>
 </div>
+
+<script>
+  document.querySelector('.register-btn').addEventListener('click', (e) => {
+    console.log('break');
+    //console.log(document.querySelector('.register-form'));
+  })
+</script>

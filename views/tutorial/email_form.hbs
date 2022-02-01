@@ -9,7 +9,7 @@
     document.querySelector('.ajax-send').addEventListener('click', () => {
       inputData = document.forms[0].elements[0].value;
       console.log(inputData);
-      sendAjax('http://localhost:3000/post/ajax_send_email', inputData);
+      sendAjax('http://localhost:3000/email/ajax/send_email', inputData);
     });
 
     const sendAjax = (url, data) => {
