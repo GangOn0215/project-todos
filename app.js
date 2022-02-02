@@ -2,6 +2,11 @@ const express = require("express");
 const hbs = require("express-handlebars");
 const app = express();
 const port = 3000;
+const passport = require('passport');
+const passportConfig = require('./passport');
+const LocalStrategy = require('passport-local').Strategy
+const session = require('express-session');
+const flash = require('connect-flash');
 
 const router = require('./router/index');
 
@@ -20,16 +25,19 @@ app.engine(
 );
 app.set('view engine', 'hbs')
 
+app.use(session({
+  secret: 'ketboard cat',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+passportConfig();
+
 app.listen(port, () => {
   console.log(`Start! express server on port ${port}!!`);
 });
 
 
 app.use(router);
-
-app.get('/', (req, res) => {
-  //  __dirname : 현재 실행 중인 폴더 경로
-  res.status(200).render('index.hbs', {
-    wiseSaying: '변명 중에서도 가장 어리석고 못난 변명은 "시간이 없어서" 라는 변명이다.',
-  })
-});
