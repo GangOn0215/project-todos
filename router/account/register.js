@@ -6,27 +6,13 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', 
-  passport.authenticate('local-join', {
+  passport.authenticate('local-register', {
     // 성공시, 메인 페이지 이동
     successRedirect: '/',
     // 실패시, 회원가입 페이지 이동
     failureRedirect: '/account/register',
-    failureFlash: false
+    failureFlash: true
   })
 );
-// router.post('/register', (req, res) => {
-//   console.log(req.body);
-//   const body = req.body;
-//   const id = body.user_id;
-//   const pw = body.user_pw;
-//   const nickname = body.user_nickname;
-//   const email = body.user_email;
-
-//   const sql = { user_id: id, user_pw: pw, user_nickname: nickname, user_email: email };
-//   const query = connect.query('insert into member set ?', sql, (err, rows) => {
-//     if(err) { throw err; }
-//     console.log("ok db insert: ", rows.insertId);
-//   })
-// })
 
 module.exports = router;

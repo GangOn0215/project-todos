@@ -15,9 +15,14 @@
   </div>
   <div class="todos-footer">
     {{wiseSaying}}
+
+    {{#isUser user}}
+    test: {{this/user_id}}
+    {{else}}
+    <a href="/account/login">login</a>
+    {{/isUser}}
   </div>
   <script>
-    console.log('{{name}}');
   </script>
 </div>
 <!-- <div class="todos-container">

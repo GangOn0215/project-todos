@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="/css/index.css">
   <link rel="stylesheet" href="/css/account.css">
   <title>Document</title>
+    <script>
+    const user_id = '{{user.user_id}}';
+    console.log('{{user.user_id}}');
+  </script>
 </head>
 
 <body>
@@ -24,7 +28,18 @@
       </ul>
       <div class="account">
         <div class="circle"></div>
-        <a href="/account/login">login</a>
+        {{!-- {{#if user}}
+          {{user.user_id}}
+        {{else}}
+          <div class="circle"></div>
+          <a href="/account/login">login</a>
+        {{/if}} --}}
+        {{#isUser user}}
+          {{this/user_id}}
+        {{else}}
+          {{wiseSaying}}
+          <a href="/account/login">login</a>
+        {{/isUser}}
         {{!-- <button id="login-page-btn">login</button> --}}
       </div>
     </nav>
@@ -35,5 +50,4 @@
   <aside></aside>
   <footer></footer>
 </body>
-
 </html>

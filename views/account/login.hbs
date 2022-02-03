@@ -3,11 +3,11 @@
     <span>Welcome back</span>
   </div>
   <div class="account-body login-body">
-    <div class="input-account">
-      <input type="text" placeholder="Username">
-      <input type="password" placeholder="Password">
-    </div>
-    <button class="account-btn login-btn">Login</button>
+    <form action="/account/login" method="post" class="input-account">
+      <input type="text" placeholder="Username" name="user_id">
+      <input type="password" placeholder="Password" name="user_pw">
+    </form>
+      <button class="account-btn login-btn">Login</button>
   </div>
   <div class="account-footer login-footer">
     <button id="register-page-btn">Register Account</button>
@@ -20,5 +20,8 @@
   document.getElementById('register-page-btn').addEventListener('click', (e) => {
     window.location.href = '/account/register';
   });
+  document.querySelector('.login-btn').addEventListener('click', (e) => {
+    document.querySelector('.input-account').submit();
+  })
 }
 </script>

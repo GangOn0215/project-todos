@@ -47,7 +47,8 @@
   margin: none;
 }
 .account-footer {
-  /* padding: 10px; */
+  padding: 10px;
+  border-bottom: none;
   padding-top: 0;
   flex-direction: column;
 }
@@ -77,5 +78,6 @@
   margin-bottom: 0px;
 }
 .register-footer {
+  padding: 0px;
   height: 45px;
 }

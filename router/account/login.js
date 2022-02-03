@@ -10,11 +10,12 @@ router.get('/login', (req, res) => {
 // connection.get()
 router.post('/login', 
   // 로그인 처리 (passport)
-  passport.authenticate('local', {
+  passport.authenticate('local-login', {
     // 성공시, 메인 페이지 이동
     successRedirect: '/',
     // 실패시, 로그인 페이지 이동
-    failureRedirect: '/account/login'
+    failureRedirect: '/account/login',
+    failureFlash: true
   })
 );
 
