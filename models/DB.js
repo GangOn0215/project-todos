@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
   port: 3306,
   user: mysql_json_file.id,
   password: mysql_json_file.password,
-  database: 'test_account'
+  database: 'todoApp_db'
 });
 
 module.exports = connection;

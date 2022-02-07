@@ -2,10 +2,14 @@ const { router } = require('../../common');
 const passport = require('passport');
 
 router.get('/register', (req, res) => {
-  res.status(200).render('account/register.hbs', {});
+  if(!req.user) {
+    res.status(200).render('account/register.hbs', {});
+  } else {
+    res.redirect('/');
+  }
 });
 
-router.post('/register', 
+router.post('/register',
   passport.authenticate('local-register', {
     // 성공시, 메인 페이지 이동
     successRedirect: '/',

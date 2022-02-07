@@ -27,19 +27,14 @@
         <li><a href="">weekly</a></li>
       </ul>
       <div class="account">
-        <div class="circle"></div>
-        {{!-- {{#if user}}
+        {{#if user}}
+          <div class="circle orange"></div>
           {{user.user_id}}
+          <button id="btn-logout">logout</button>
         {{else}}
           <div class="circle"></div>
-          <a href="/account/login">login</a>
-        {{/if}} --}}
-        {{#isUser user}}
-          {{this/user_id}}
-        {{else}}
-          {{wiseSaying}}
-          <a href="/account/login">login</a>
-        {{/isUser}}
+          <a href="/account/login" id="btn-login">login</a>
+        {{/if}}
         {{!-- <button id="login-page-btn">login</button> --}}
       </div>
     </nav>

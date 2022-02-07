@@ -4,7 +4,12 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 router.get('/login', (req, res) => {
-  res.status(200).render('account/login.hbs', {})
+  if(!req.user) {
+    res.status(200).render('account/login.hbs', {});
+  } else {
+    res.redirect('/');
+  }
+  
 });
 
 // connection.get()

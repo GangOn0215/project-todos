@@ -8,6 +8,8 @@ const passportConfig = require('./passport');
 const session = require('express-session');
 const flash = require('connect-flash');
 const router = require('./router/index');
+let session_json_file = require('./private/database.json');
+session_json_file = JSON.parse(JSON.stringify(session_json_file));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,7 +27,7 @@ app.engine(
 app.set('view engine', 'hbs');
 
 app.use(session({
-  secret: 'ketboard cat',
+  secret: session_json_file.session_key,
   resave: false,
   saveUninitialized: true
 }));
