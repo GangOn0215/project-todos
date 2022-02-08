@@ -1,7 +1,5 @@
 const { router } = require('../../common');
-const connection = require('../../models/DB');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 
 router.get('/login', (req, res) => {
   if(!req.user) {
@@ -9,7 +7,6 @@ router.get('/login', (req, res) => {
   } else {
     res.redirect('/');
   }
-  
 });
 
 // connection.get()

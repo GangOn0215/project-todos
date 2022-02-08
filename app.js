@@ -1,14 +1,13 @@
 const express = require("express");
 const hbs = require("express-handlebars");
-const customHelperConfig = require('./CustomHelper');
 const app = express();
 const port = 3000;
 const passport = require('passport');
-const passportConfig = require('./passport');
+const passportConfig = require('./passport/passport');
 const session = require('express-session');
 const flash = require('connect-flash');
 const router = require('./router/index');
-let session_json_file = require('./private/database.json');
+let session_json_file = require('./private/session.json');
 session_json_file = JSON.parse(JSON.stringify(session_json_file));
 
 app.use(express.json());
@@ -24,6 +23,7 @@ app.engine(
     layoutDir: __dirname + "/views/layouts"
   })
 );
+
 app.set('view engine', 'hbs');
 
 app.use(session({
@@ -35,7 +35,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 passportConfig();
-customHelperConfig();
 
 app.listen(port, () => {
   console.log(`Start! express server on port ${port}!!`);

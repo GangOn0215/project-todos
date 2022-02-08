@@ -1,5 +1,6 @@
 const { router } = require('../common');
 const account    = require('./account/index');
+const todo       = require('./todo/index');
 const email      = require('./email');
 
 router.get('/', (req, res) => {
@@ -16,6 +17,7 @@ router.get('/', (req, res) => {
 });
 
 router.use('/account', account);
-router.use('/email', email);
+router.use('/todo',    todo)
+router.use('/email',   email);
 
 module.exports = router;
