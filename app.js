@@ -6,6 +6,7 @@ const passport = require('passport');
 const passportConfig = require('./passport/passport');
 const session = require('express-session');
 const flash = require('connect-flash');
+
 const router = require('./router/index');
 let session_json_file = require('./private/session.json');
 session_json_file = JSON.parse(JSON.stringify(session_json_file));
@@ -37,7 +38,7 @@ app.use(flash());
 passportConfig();
 
 app.listen(port, () => {
-  console.log(`Start! express server on port ${port}!!`);
+  console.log(`Start! express server on port ${port}!!`);;
 });
 
 app.use(router);

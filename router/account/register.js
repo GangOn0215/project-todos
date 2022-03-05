@@ -4,9 +4,11 @@ const passport = require('passport');
 router.get('/register', (req, res) => {
   if(!req.user) {
     res.status(200).render('account/register.hbs', {});
-  } else {
-    res.redirect('/');
-  }
+
+    return;
+  } 
+
+  res.redirect('/');
 });
 
 router.post('/register',
