@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="/css/index.css">
   <link rel="stylesheet" href="/css/account.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
   <title>Document</title>
     <script>
     const user_id = '{{user.user_id}}';
@@ -24,12 +26,12 @@
       <ul>
         <li><a href="/">about</a></li>
         <li><a href="/todo/daily">daily</a></li>
-        <li><a href="">weekly</a></li>
+        <li><a href="/todo/weekly">weekly</a></li>
       </ul>
       <div class="account">
         {{#if user}}
           <div class="circle orange"></div>
-          {{user.user_id}}
+          {{user}}
           <button id="btn-logout">logout</button>
         {{else}}
           <div class="circle"></div>

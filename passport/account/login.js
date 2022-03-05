@@ -16,13 +16,20 @@ module.exports = () => {
       /* if(!rows) */
       if (rows.length <= 0) {
         console.log('your id is not found');
+        /**
+         * 
+         * done(null, false, { message: 'err_test' }) 
+         * req.flash('error', 'err_test')
+         * 
+         **/
         return done(null, false, { message: 'your id is not found' });
       }
 
       crypto.pbkdf2(user_pw, rows[0].salt, 10000, 32, 'sha256', function (err, hashedPassword) {
         if (err) throw err;
 
-        const row_pw = Buffer.from(rows[0].user_pw, 'hex');
+        const primaryMemID = rows[0].id;
+        const row_pw   = Buffer.from(rows[0].user_pw, 'hex');
         hashedPassword = Buffer.from(hashedPassword, 'hex');
 
         if (!crypto.timingSafeEqual(row_pw, hashedPassword)) {
@@ -30,8 +37,10 @@ module.exports = () => {
           return done(null, false, { message: 'Incorrect password' });
         }
 
-        console.log('login success, ', user_id);
-        return done(null, { 'user_id': user_id });
+        console.log('login id:  ', user_id);
+        console.log('login uid: ', primaryMemID);
+
+        return done( null, { 'uid':  primaryMemID, 'user_id': user_id  } );
       });
 
     });

@@ -3,13 +3,25 @@ const passport = require('passport');
 
 router.get('/login', (req, res) => {
   if(!req.user) {
-    res.status(200).render('account/login.hbs', {});
-  } else {
-    res.redirect('/');
+    const flashMessage = req.flash();
+    let feedback = '';
+    
+    if(flashMessage.error) {
+      feedback = flashMessage.error[0];
+    }
+    // console.log('flash message: ', flashMessage);
+    
+    res.status(200).render('account/login.hbs', {
+      flashErrorMsg: feedback,
+    });
+
+    return;
   }
+
+  res.redirect('/');
+
 });
 
-// connection.get()
 router.post('/login', 
   // 로그인 처리 (passport)
   passport.authenticate('local-login', {

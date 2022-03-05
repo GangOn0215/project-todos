@@ -9,7 +9,7 @@ window.onload = () => {
       xhr.open('POST', url);
       xhr.setRequestHeader('Content-Type', "application/json");
       xhr.send();
-
+      
       xhr.addEventListener('load', () => {
         location.reload();
       })
