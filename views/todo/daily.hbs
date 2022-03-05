@@ -20,7 +20,7 @@
       --}}
       {{#each todos}}
       <li>
-        <span>{{todo}}</span>
+        <span>{{this/content}}</span>
         <i class="fas fa-trash-alt"></i>
       </li>
       {{/each}}
@@ -30,5 +30,8 @@
     test
   </div>
   <script>
+    const a = {{{json todos}}};
+
+    console.log(a);
   </script>
 </div>
