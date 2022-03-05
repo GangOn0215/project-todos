@@ -4,10 +4,10 @@
   </div>
   <div class="account-body login-body">
     <form action="/account/login" method="post" class="input-account">
-      <input type="text" placeholder="Username" name="user_id">
-      <input type="password" placeholder="Password" name="user_pw">
+      <input type="text" placeholder="Username" name="user_id" id="user_id">
+      <input type="password" placeholder="Password" name="user_pw" id="user_pw">
     </form>
-      <button class="account-btn login-btn">Login</button>
+    <button class="account-btn login-btn">Login</button>
   </div>
   <div class="account-footer login-footer">
     <button id="register-page-btn">Register Account</button>
@@ -15,13 +15,81 @@
   </div>
 </div>
 
+{{!-- NOTE: your id is not found --}}
+{{!-- NOTE: Incorrect password --}}
+{{!-- NOTE: Welcome {user} --}}
+
+<!-- The Modal -->
+<div class="modal-container">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+
+    <p class="flash-err-msg"></p>
+
+    <span class="close">&times;</span>
+  </div>
+
+</div>
+
 <script>
   window.onload = () => {
-  document.getElementById('register-page-btn').addEventListener('click', (e) => {
-    window.location.href = '/account/register';
-  });
-  document.querySelector('.login-btn').addEventListener('click', (e) => {
-    document.querySelector('.input-account').submit();
-  })
-}
+    const user_id        = document.querySelector('#user_id');
+    const user_pw        = document.querySelector('#user_pw');
+    const btnLogin       = document.querySelector('.login-btn');
+    const flashErrMsg    = document.querySelector('.flash-err-msg');
+    const modalContainer = document.querySelector('.modal-container');
+    const btnRegister    = document.querySelector('#register-page-btn');
+
+    let flashError = '{{flashErrorMsg}}';
+
+    // 모달 띄우는 함수
+    const modalProcess = (errMessage) => {
+      modalContainer.style.display   = 'flex';
+      flashErrMsg.innerHTML = errMessage;
+    }
+
+    // if clicked login-btn
+    btnLogin.addEventListener('click', (e) => {
+      
+      /**
+       *
+       *  FINISH 만약 로그인 버튼을 눌렀을때
+       *
+       *  1. 값이 비어있다면 Empty Error 모달 출력
+       *  2. 아이디가 없다면 Not Found ID 모달 출력
+       *  3. 패스워드가 일치하지 않다면 Incorrect Pw 모달 출력
+       *
+       */
+
+      // 만약 아이디 또는 패스워드 입력칸에 데이터가 없다면 처리
+      if(user_id.value === '' || user_pw.value === '') {
+        let emptyErrMsg = 'Please write down your ID or password.'
+
+        modalProcess(emptyErrMsg);
+
+        return;
+      }
+
+      document.querySelector('.input-account').submit();
+    });
+
+    // 만약 플래쉬 데이터가 존재한다면
+    if(flashError.length) {
+      modalProcess(flashError);
+    }
+
+    window.onclick = function (event) {
+      if (event.target === modalContainer) {
+        modalContainer.style.display = "none";
+      }
+    }
+    
+    
+    // 만약 register 버튼을 클릭했다면 register 페이지로 이동
+    btnRegister.addEventListener('click', (e) => {
+      window.location.href = '/account/register';
+    });
+
+  }
 </script>
