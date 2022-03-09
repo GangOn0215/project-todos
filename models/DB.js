@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-const sql   = require('./account/sql');
+const sql   = require('./sql');
 
 const connection = mysql.createPool({
   // set dotenv
@@ -13,13 +13,15 @@ const connection = mysql.createPool({
 
 const query = async (alias, values) => {
   return new Promise((resolve, reject) => connection.query(sql[alias], values, (error, results) => {
+    console.log('break');
     if(error) {
-      console.log(error);
       reject({ error });
     }
-
+    
     resolve(results);
-  }));
+  })).catch((err) => {
+    console.log(err);
+  });
 }
 
 // module.exports = connection;

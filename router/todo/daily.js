@@ -3,6 +3,7 @@ const controllerDaily = require('../../controller/todos/daily');
 
 
 router.get('/daily', async (req, res) => {
+  console.log('test', req.body);
   console.log('daily.js loaded', req.user);
   const reqUser = req.user;
   let   user_id = null;
@@ -20,6 +21,8 @@ router.get('/daily', async (req, res) => {
     let data = await controllerDaily.readTodoDatas(uid);
     
     // 데이터 가공
+    console.log(data);
+    
     todos = data.map((todo) => {
       return {
         id: todo.id,

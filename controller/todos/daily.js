@@ -1,4 +1,4 @@
-const connection = require('../../models/DB');
+const query = require('../../models/DB');
 
 /**
  * 
@@ -8,18 +8,13 @@ const connection = require('../../models/DB');
  * 
  */
 
-// Promise 처리
-function readTodoDatas(uid) {
-  return new Promise((reslove, reject) => {
-    try {
-      let query = connection.query('select * from todos where mem_id=?', [uid], (err, rows) => {
-        if(err) throw err;
+const readTodoDatas = async (uid) => {
+  return new Promise((resolve, reject) => {
+    const todos = query('selectTodos', uid);
     
-        return reslove(rows);
-      });
-    } catch(err) {
-      return reject(err);
-    }
+    resolve(todos);
+  }).catch((err) => {
+    console.log(err);
   });
 }
 
