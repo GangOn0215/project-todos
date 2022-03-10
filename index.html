@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Vue</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			font-family: 'Microsoft YaHei';
+		}
+
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100vw;
+			height: 100vh;
+			background-color: #282C34;
+		}
+
+		svg,
+		path {
+			transition: all 0.35s ease-in-out;
+			-webkit-transition: all 0.35s ease-in-out;
+			-moz-transition: all 0.35s ease-in-out;
+			-o-transition: all 0.35s ease-in-out;
+			-ms-transition: all 0.35s ease-in-out;
+		}
+
+		svg {
+			border-radius: 7px;
+			filter: grayscale(1);
+			padding: 5px;
+			width: 40px;
+			height: 40px;
+		}
+
+		button {
+			border: none;
+			background: none;
+			outline: none;
+		}
+
+		button>svg:hover {
+			filter: grayscale(0);
+			box-shadow: 0 0 35px -10px #3d434e;
+		}
+
+		button+div,
+		.default {
+			width: 80%;
+			height: 65%;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			position: fixed;
+			top: 25%;
+			left: 10%;
+			background-color: #191b20;
+			border-radius: 7px;
+			padding: 5px;
+		}
+
+		button+div {
+			transform: scale(0);
+			transition: .35s ease-in-out;
+			z-index: 5;
+			display: flex;
+			flex-direction: column;
+		}
+
+		button+div>div:nth-child(1) {
+			width: 100%;
+			height: 30%;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			color: white;
+			font-weight: bolder;
+			font-size: 100px;
+			box-sizing: border-box;
+			padding: 20px;
+		}
+
+		button+div>div:nth-child(1) svg {
+			width: 20%;
+			height: 100%;
+			filter: grayscale(0) !important;
+		}
+
+		button+div>div:nth-child(2) {
+			width: 100%;
+			height: 70%;
+			display: flex;
+			align-items: center;
+		}
+
+		.default {
+			transform: scale(1);
+			z-index: 3;
+		}
+
+		button:focus>svg {
+			filter: grayscale(0);
+		}
+
+		button:focus+div {
+			transform: scale(1);
+		}
+
+		button:nth-child(1)>svg {
+			filter: grayscale(0);
+		}
+
+		button:nth-child(1)+div {
+			transform: scale(1);
+		}
+
+		.title {
+			width: 80%;
+			height: 50px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			position: fixed;
+			top: 10%;
+			left: 10%;
+			background-color: #191b20;
+			border-radius: 7px;
+			padding: 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="title">
+		<button>
+			<svg t="1602870634916" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+				p-id="2707" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<defs>
+					<style type="text/css"></style>
+				</defs>
+				<path
+					d="M116.7 63.8l71.9 806.9 322.8 89.6 323.7-89.8 72.1-806.7H116.7z m634 263.9H372l9 101.3h360.7l-27.2 303.8-203 56.3-202.7-56.3-13.9-155.4h99.4l7.1 79 110.2 29.7 0.3-0.1L622 656.3 633.5 528h-343l-26.7-299.2h495.7l-8.8 98.9z"
+					fill="#E44D26" p-id="2708">
+				</path>
+			</svg>
+		</button>
+		<div>
+			<div>
+				<svg t="1602870634916" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					p-id="2707" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<defs>
+						<style type="text/css"></style>
+					</defs>
+					<path
+						d="M116.7 63.8l71.9 806.9 322.8 89.6 323.7-89.8 72.1-806.7H116.7z m634 263.9H372l9 101.3h360.7l-27.2 303.8-203 56.3-202.7-56.3-13.9-155.4h99.4l7.1 79 110.2 29.7 0.3-0.1L622 656.3 633.5 528h-343l-26.7-299.2h495.7l-8.8 98.9z"
+						fill="#E44D26" p-id="2708">
+					</path>
+				</svg>
+				HTML 5
+			</div>
+			<div>
+				<pre class="line-numbers  language-markup" style="font-size: 14px; color: white;">
+		<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><code class=" language-markup"><span class="token doctype">&lt;!DOCTYPE HTML&gt;</span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>About elk<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+			The truth about elk.
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+				</div>
+		</div>
+
+		<button>
+			<svg t="1602870638319" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+				p-id="2852" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<defs>
+					<style type="text/css"></style>
+				</defs>
+				<path
+					d="M512 512zM128.3 64.3l69.8 805.8 313.4 89.5L825.8 870l69.9-805.7H128.3z m580.9 669.3l-197.1 56.2-196.8-56.5L301.9 578h96.4l6.9 79.1 107.1 30.3 0.3 0.5h0.1l106.9-29.7L630.7 530H406.1l-8-99.9h241.1l8.8-101.9H280.2l-8-97.9H753l-43.8 503.3z"
+					fill="#264DE4" p-id="2853">
+				</path>
+			</svg>
+		</button>
+		<div>
+			<div>
+				<svg t="1602870638319" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					p-id="2852" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<defs>
+						<style type="text/css"></style>
+					</defs>
+					<path
+						d="M512 512zM128.3 64.3l69.8 805.8 313.4 89.5L825.8 870l69.9-805.7H128.3z m580.9 669.3l-197.1 56.2-196.8-56.5L301.9 578h96.4l6.9 79.1 107.1 30.3 0.3 0.5h0.1l106.9-29.7L630.7 530H406.1l-8-99.9h241.1l8.8-101.9H280.2l-8-97.9H753l-43.8 503.3z"
+						fill="#264DE4" p-id="2853">
+					</path>
+				</svg>
+				CSS 3
+			</div>
+			<div>
+				<pre style="font-size: 14px; color: #fff;"><code class="hljs css copyable" lang="css">
+		<span class="hljs-selector-pseudo">:root</span> {
+			<span class="hljs-attribute">--my-var</span>: <span class="hljs-number">24</span>, <span class="hljs-number">144</span>, <span class="hljs-number">255</span>;
+		}
+				
+		<span class="hljs-selector-class">.custom-bg-1</span> {
+			<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(var(--my-var), <span class="hljs-number">0.5</span>);
+		}
+				
+		<span class="hljs-selector-class">.custom-bg-2</span> {
+			<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(var(--my-var), <span class="hljs-number">0.7</span>);
+		}</code></pre>
+			</div>
+		</div>
+
+		<button>
+			<svg t="1602870618253" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+				p-id="2415" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<defs>
+					<style type="text/css"></style>
+				</defs>
+				<path
+					d="M63.5 63.5h897v897h-897v-897zM887 746.6c-6.5-40.9-33.2-75.3-112.2-107.4-27.5-12.9-58.1-21.9-67.2-42.6-3.4-12.3-3.9-19.1-1.7-26.4 5.6-24.1 34.2-31.4 56.6-24.7 14.6 4.5 28 15.7 36.5 33.6 38.6-25.3 38.6-25.3 65.6-42-10.1-15.7-15.1-22.5-21.9-29.2-23.5-26.3-54.9-39.8-105.9-38.6l-26.4 3.3c-25.3 6.2-49.3 19.6-63.9 37.6-42.6 48.3-30.3 132.3 21.3 167.1 51 38.1 125.6 46.5 135.2 82.4 9 43.7-32.5 57.7-73.5 52.7-30.3-6.7-47.1-21.9-65.6-49.9l-68.4 39.3c7.8 17.9 16.8 25.8 30.3 41.4 65 65.6 227.6 62.3 256.8-37.5 1.1-3.4 9-26.4 2.8-61.7l1.6 2.6zM551.3 475.8h-84c0 72.4-0.3 144.4-0.3 217 0 46 2.4 88.3-5.2 101.3-12.3 25.8-44.1 22.5-58.5 17.9-14.8-7.3-22.3-17.4-31-32-2.4-3.9-4.1-7.3-4.7-7.3l-68.2 42c11.4 23.5 28 43.8 49.5 56.7 32 19.1 74.9 25.2 119.9 15.1 29.3-8.4 54.5-25.8 67.7-52.7 19.1-34.8 15-77.4 14.8-125.1 0.4-76.8 0-153.6 0-230.9v-2z"
+					fill="#F5DD1E" p-id="2416">
+				</path>
+			</svg>
+		</button>
+		<div>
+			<div>
+				<svg t="1602870618253" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					p-id="2415" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<defs>
+						<style type="text/css"></style>
+					</defs>
+					<path
+						d="M63.5 63.5h897v897h-897v-897zM887 746.6c-6.5-40.9-33.2-75.3-112.2-107.4-27.5-12.9-58.1-21.9-67.2-42.6-3.4-12.3-3.9-19.1-1.7-26.4 5.6-24.1 34.2-31.4 56.6-24.7 14.6 4.5 28 15.7 36.5 33.6 38.6-25.3 38.6-25.3 65.6-42-10.1-15.7-15.1-22.5-21.9-29.2-23.5-26.3-54.9-39.8-105.9-38.6l-26.4 3.3c-25.3 6.2-49.3 19.6-63.9 37.6-42.6 48.3-30.3 132.3 21.3 167.1 51 38.1 125.6 46.5 135.2 82.4 9 43.7-32.5 57.7-73.5 52.7-30.3-6.7-47.1-21.9-65.6-49.9l-68.4 39.3c7.8 17.9 16.8 25.8 30.3 41.4 65 65.6 227.6 62.3 256.8-37.5 1.1-3.4 9-26.4 2.8-61.7l1.6 2.6zM551.3 475.8h-84c0 72.4-0.3 144.4-0.3 217 0 46 2.4 88.3-5.2 101.3-12.3 25.8-44.1 22.5-58.5 17.9-14.8-7.3-22.3-17.4-31-32-2.4-3.9-4.1-7.3-4.7-7.3l-68.2 42c11.4 23.5 28 43.8 49.5 56.7 32 19.1 74.9 25.2 119.9 15.1 29.3-8.4 54.5-25.8 67.7-52.7 19.1-34.8 15-77.4 14.8-125.1 0.4-76.8 0-153.6 0-230.9v-2z"
+						fill="#F5DD1E" p-id="2416">
+					</path>
+				</svg>
+				JavaScript
+			</div>
+			<div>
+				<pre style="font-size: 14px; color: white;" class="line-numbers  language-javascript">
+		 <span class="line-numbers-rows"><span></span><span></span></span><code class=" language-javascript"><span class="token keyword">let</span> n <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span>
+		 n <span class="token operator">=</span> <span class="token number">12.345</span><span class="token punctuation">;</span>
+			
+		 <span class="token script"><span class="token language-javascript">
+				ol<span class="token punctuation">.</span><span class="token function">before</span><span class="token punctuation">(</span><span class="token string">'before'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				ol<span class="token punctuation">.</span><span class="token function">after</span><span class="token punctuation">(</span><span class="token string">'after'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			
+				<span class="token keyword">let</span> liFirst <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				liFirst<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'prepend'</span><span class="token punctuation">;</span>
+				ol<span class="token punctuation">.</span><span class="token function">prepend</span><span class="token punctuation">(</span>liFirst<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			
+				<span class="token keyword">let</span> liLast <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				liLast<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'append'</span><span class="token punctuation">;</span>
+				ol<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>liLast<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			</span></span>
+	</code></pre>
+			
+	</div>
+		</div>
+
+		<button>
+			<svg t="1602870622749" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+				p-id="2560" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<defs>
+					<style type="text/css"></style>
+				</defs>
+				<path
+					d="M121.3 283.3c-79.3 113.9-69.5 262-8.8 383 1.4 2.9 2.9 5.7 4.4 8.5 0.9 1.9 1.8 3.7 2.9 5.6 0.5 1 1.1 2.1 1.8 3.1l3 5.7 5.9 9.9c1.1 1.8 2.1 3.6 3.4 5.5 2 3.5 4.5 7 6.6 10.5 1 1.5 1.9 2.9 2.9 4.4 4.1 6.5 8 11.9 12 17.1l-0.4-0.6c2.9 4 5.8 7.9 9 11.8 1 1.4 2.1 2.8 3.2 4.3l8.3 10.1c1 1.1 2 2.5 3.1 3.7 3.7 4.4 7.5 8.7 11.4 13 0 0.1 0.1 0.1 0.2 0.3 4.8 6.1 10 11.5 15.7 16.3l0.2 0.1c3 3.1 6 6.1 9.2 9.1l3.8 3.6c4.1 3.9 8.3 7.8 12.7 11.5 0.1 0 0.1 0.1 0.2 0.1l2.1 1.9c3.8 3.3 7.6 6.6 11.6 9.7l4.7 3.9c3.2 2.5 6.5 5 9.7 7.5l5.1 3.9c3.5 2.6 7.2 5.2 10.7 7.7 1.3 0.9 2.6 1.9 3.9 2.7l1.1 0.9 10.5 6.9 4.5 3c5.5 3.5 11 6.8 16.4 10.1 1.6 0.8 3.1 1.7 4.6 2.5 4 2.3 8.2 4.7 12.3 6.8 2.2 1.3 4.6 2.4 6.9 3.5 2.8 1.6 5.7 3.1 8.7 4.7 0.7 0.2 1.5 0.5 2.2 0.9h-0.1c1.2 0.6 2.4 1.1 3.6 1.8 4.5 2.2 9.2 4.4 14 6.5 0.9 0.4 1.9 0.8 2.8 1.3 5.4 2.4 10.8 4.6 16.3 6.8 1.3 0.4 2.6 1 3.9 1.5 5 1.9 10.2 3.8 15.3 5.7l1.9 0.7c5.7 1.9 11.3 3.8 17.1 5.6 1.3 0.4 2.7 0.9 4.1 1.2 5.9 1.8 11.7 3.9 17.7 5.1 383.1 69.8 494.5-230.3 494.5-230.3C844.2 824 678.2 856.1 521 820.4c-5.8-1.3-11.7-3.2-17.5-4.9-8.3-2.4-16.6-5-24.7-7.8l3.5 1.1-2.3-0.9c-5.1-1.7-10-3.6-14.9-5.5-1.2-0.5-2.4-1-3.7-1.4l-0.4-0.1c-5.5-2.2-10.8-4.5-16.1-6.8-1.1-0.4-2.1-0.9-3.3-1.3-6.3-2.7-12.5-5.6-18.6-8.6l5.2 2.3c-1.4-0.6-2.6-1.2-3.9-1.9-3.5-1.7-7-3.5-10.4-5.3-2.6-1.2-5.2-2.6-7.7-4l0.8 0.4c-4.2-2.2-8.4-4.7-12.7-7-1.3-0.9-2.7-1.7-4.2-2.5-6.3-3.7-12.6-7.5-18.7-11.5l2.4 1.4c-1.6-1-3.1-2-4.6-3.1l0.2 0.2c-4.2-2.6-8.3-5.3-12.3-8.1l0.7 0.5c-1.3-0.9-2.5-1.8-3.8-2.7-4.8-3.3-8.3-5.9-11.9-8.6l0.9 0.6c-1.6-1.3-3.2-2.5-4.9-3.7-3.3-2.6-6.6-5-9.9-7.8l-4.4-3.5c-4.9-3.9-8.9-7.4-12.9-10.9l0.4 0.4c-0.4-0.4-0.9-0.8-1.3-1.1l-13-11.8-3.7-3.5c-3.1-3.1-6.2-6.1-9.3-9.2l-3.6-3.7c-3.9-3.8-7.6-7.8-11.3-11.8l-0.2-0.3-0.6-0.6c-4-4.4-7.8-8.8-11.7-13.2-1-1.1-1.9-2.4-3-3.6l-8.4-10.3c-3.8-4.8-7.5-9.7-11.2-14.6l-1.5-2.1c-87.2-119.1-118.7-283.3-49-418.1l-62.2 77.8z"
+					fill="#0769AD" p-id="2561"></path>
+				<path
+					d="M367.3 187.4c-57.5 82.5-54.2 192.8-9.5 280 8.3 16.4 16.7 30.2 26 43.3l-0.7-1.1c8.6 12.3 18.1 26.9 29.6 36.8 4.1 4.6 8.4 9.1 12.9 13.4l3.4 3.4c4.3 4.1 8.6 8.1 13.1 12.1l0.6 0.5c4.5 3.9 9.5 8.1 14.7 12.2l0.8 0.6c1.3 0.9 2.4 1.9 3.6 2.7 5.2 4 10.5 7.9 15.9 11.8l0.6 0.3c2.3 1.7 4.8 3.2 7.4 4.8 1 0.7 2.2 1.6 3.4 2.2 3.9 2.5 7.8 4.9 11.8 7.4l1.8 0.9c3.4 2 7 4 10.5 5.9 1.2 0.8 2.4 1.3 3.7 2 2.5 1.2 5 2.5 7.4 3.8l1.2 0.5c5 2.5 10.2 4.8 15.2 7.1 5.3 2.3 10.6 4.5 16 6.6 1.9 0.6 3.6 1.4 5.4 1.9 3.8 1.4 7.8 2.7 11.6 4l5.2 1.7c5.5 1.7 11 3.9 16.7 4.8 295.7 49 364.2-178.8 364.2-178.8-61.6 88.7-180.9 131-308.1 98-6.3-1.6-12.6-3.4-18.8-5.5l2.1 0.6c-1.8-0.5-3.4-1-5.1-1.6-3.9-1.3-7.9-2.7-11.7-4.1l-5.4-2c-4.2-1.7-8.4-3.2-12.5-5-1.3-0.6-2.4-0.9-3.4-1.5-5.2-2.4-10.5-4.7-15.6-7.2l-7.7-4-4.5-2.2c-3.4-1.8-6.6-3.7-9.9-5.6-0.8-0.4-1.6-0.8-2.4-1.3l0.1 0.1c-3.9-2.5-8.1-4.8-11.8-7.4-1.3-0.7-2.4-1.6-3.6-2.3l-7.8-5.1c-5.4-3.7-10.6-7.8-15.9-11.7-1.2-1.1-2.4-2-3.5-2.9-55.9-43.9-100-104-120.9-172.1-22-70.7-17.2-150 20.9-214.4l-47 66.4z"
+					fill="#0769AD" p-id="2562"></path>
+				<path
+					d="M574.1 115.7C540.2 165.4 537 227.2 560.3 282c24.8 58.3 75.5 104 134.6 125.7 2.4 0.9 4.8 1.7 7.3 2.6l3.3 1c3.4 1.1 6.9 2.4 10.4 3.1 163.4 31.5 207.6-83.9 219.5-100.8-38.9 55.9-104.2 69.3-184.2 49.8-7-1.7-13.8-3.8-20.5-6.4l1.2 0.4c-8.3-2.9-16.5-6.3-24.4-10.1l1.4 0.6c-14.4-7-28.2-15.4-40.9-25.1l0.6 0.4c-71.7-54.3-116.1-158-69.3-242.4l-25.2 34.9z"
+					fill="#0769AD" p-id="2563">
+				</path>
+			</svg>
+		</button>
+		<div>
+			<div>
+				<svg t="1602870622749" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					p-id="2560" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<defs>
+						<style type="text/css"></style>
+					</defs>
+					<path
+						d="M121.3 283.3c-79.3 113.9-69.5 262-8.8 383 1.4 2.9 2.9 5.7 4.4 8.5 0.9 1.9 1.8 3.7 2.9 5.6 0.5 1 1.1 2.1 1.8 3.1l3 5.7 5.9 9.9c1.1 1.8 2.1 3.6 3.4 5.5 2 3.5 4.5 7 6.6 10.5 1 1.5 1.9 2.9 2.9 4.4 4.1 6.5 8 11.9 12 17.1l-0.4-0.6c2.9 4 5.8 7.9 9 11.8 1 1.4 2.1 2.8 3.2 4.3l8.3 10.1c1 1.1 2 2.5 3.1 3.7 3.7 4.4 7.5 8.7 11.4 13 0 0.1 0.1 0.1 0.2 0.3 4.8 6.1 10 11.5 15.7 16.3l0.2 0.1c3 3.1 6 6.1 9.2 9.1l3.8 3.6c4.1 3.9 8.3 7.8 12.7 11.5 0.1 0 0.1 0.1 0.2 0.1l2.1 1.9c3.8 3.3 7.6 6.6 11.6 9.7l4.7 3.9c3.2 2.5 6.5 5 9.7 7.5l5.1 3.9c3.5 2.6 7.2 5.2 10.7 7.7 1.3 0.9 2.6 1.9 3.9 2.7l1.1 0.9 10.5 6.9 4.5 3c5.5 3.5 11 6.8 16.4 10.1 1.6 0.8 3.1 1.7 4.6 2.5 4 2.3 8.2 4.7 12.3 6.8 2.2 1.3 4.6 2.4 6.9 3.5 2.8 1.6 5.7 3.1 8.7 4.7 0.7 0.2 1.5 0.5 2.2 0.9h-0.1c1.2 0.6 2.4 1.1 3.6 1.8 4.5 2.2 9.2 4.4 14 6.5 0.9 0.4 1.9 0.8 2.8 1.3 5.4 2.4 10.8 4.6 16.3 6.8 1.3 0.4 2.6 1 3.9 1.5 5 1.9 10.2 3.8 15.3 5.7l1.9 0.7c5.7 1.9 11.3 3.8 17.1 5.6 1.3 0.4 2.7 0.9 4.1 1.2 5.9 1.8 11.7 3.9 17.7 5.1 383.1 69.8 494.5-230.3 494.5-230.3C844.2 824 678.2 856.1 521 820.4c-5.8-1.3-11.7-3.2-17.5-4.9-8.3-2.4-16.6-5-24.7-7.8l3.5 1.1-2.3-0.9c-5.1-1.7-10-3.6-14.9-5.5-1.2-0.5-2.4-1-3.7-1.4l-0.4-0.1c-5.5-2.2-10.8-4.5-16.1-6.8-1.1-0.4-2.1-0.9-3.3-1.3-6.3-2.7-12.5-5.6-18.6-8.6l5.2 2.3c-1.4-0.6-2.6-1.2-3.9-1.9-3.5-1.7-7-3.5-10.4-5.3-2.6-1.2-5.2-2.6-7.7-4l0.8 0.4c-4.2-2.2-8.4-4.7-12.7-7-1.3-0.9-2.7-1.7-4.2-2.5-6.3-3.7-12.6-7.5-18.7-11.5l2.4 1.4c-1.6-1-3.1-2-4.6-3.1l0.2 0.2c-4.2-2.6-8.3-5.3-12.3-8.1l0.7 0.5c-1.3-0.9-2.5-1.8-3.8-2.7-4.8-3.3-8.3-5.9-11.9-8.6l0.9 0.6c-1.6-1.3-3.2-2.5-4.9-3.7-3.3-2.6-6.6-5-9.9-7.8l-4.4-3.5c-4.9-3.9-8.9-7.4-12.9-10.9l0.4 0.4c-0.4-0.4-0.9-0.8-1.3-1.1l-13-11.8-3.7-3.5c-3.1-3.1-6.2-6.1-9.3-9.2l-3.6-3.7c-3.9-3.8-7.6-7.8-11.3-11.8l-0.2-0.3-0.6-0.6c-4-4.4-7.8-8.8-11.7-13.2-1-1.1-1.9-2.4-3-3.6l-8.4-10.3c-3.8-4.8-7.5-9.7-11.2-14.6l-1.5-2.1c-87.2-119.1-118.7-283.3-49-418.1l-62.2 77.8z"
+						fill="#0769AD" p-id="2561"></path>
+					<path
+						d="M367.3 187.4c-57.5 82.5-54.2 192.8-9.5 280 8.3 16.4 16.7 30.2 26 43.3l-0.7-1.1c8.6 12.3 18.1 26.9 29.6 36.8 4.1 4.6 8.4 9.1 12.9 13.4l3.4 3.4c4.3 4.1 8.6 8.1 13.1 12.1l0.6 0.5c4.5 3.9 9.5 8.1 14.7 12.2l0.8 0.6c1.3 0.9 2.4 1.9 3.6 2.7 5.2 4 10.5 7.9 15.9 11.8l0.6 0.3c2.3 1.7 4.8 3.2 7.4 4.8 1 0.7 2.2 1.6 3.4 2.2 3.9 2.5 7.8 4.9 11.8 7.4l1.8 0.9c3.4 2 7 4 10.5 5.9 1.2 0.8 2.4 1.3 3.7 2 2.5 1.2 5 2.5 7.4 3.8l1.2 0.5c5 2.5 10.2 4.8 15.2 7.1 5.3 2.3 10.6 4.5 16 6.6 1.9 0.6 3.6 1.4 5.4 1.9 3.8 1.4 7.8 2.7 11.6 4l5.2 1.7c5.5 1.7 11 3.9 16.7 4.8 295.7 49 364.2-178.8 364.2-178.8-61.6 88.7-180.9 131-308.1 98-6.3-1.6-12.6-3.4-18.8-5.5l2.1 0.6c-1.8-0.5-3.4-1-5.1-1.6-3.9-1.3-7.9-2.7-11.7-4.1l-5.4-2c-4.2-1.7-8.4-3.2-12.5-5-1.3-0.6-2.4-0.9-3.4-1.5-5.2-2.4-10.5-4.7-15.6-7.2l-7.7-4-4.5-2.2c-3.4-1.8-6.6-3.7-9.9-5.6-0.8-0.4-1.6-0.8-2.4-1.3l0.1 0.1c-3.9-2.5-8.1-4.8-11.8-7.4-1.3-0.7-2.4-1.6-3.6-2.3l-7.8-5.1c-5.4-3.7-10.6-7.8-15.9-11.7-1.2-1.1-2.4-2-3.5-2.9-55.9-43.9-100-104-120.9-172.1-22-70.7-17.2-150 20.9-214.4l-47 66.4z"
+						fill="#0769AD" p-id="2562"></path>
+					<path
+						d="M574.1 115.7C540.2 165.4 537 227.2 560.3 282c24.8 58.3 75.5 104 134.6 125.7 2.4 0.9 4.8 1.7 7.3 2.6l3.3 1c3.4 1.1 6.9 2.4 10.4 3.1 163.4 31.5 207.6-83.9 219.5-100.8-38.9 55.9-104.2 69.3-184.2 49.8-7-1.7-13.8-3.8-20.5-6.4l1.2 0.4c-8.3-2.9-16.5-6.3-24.4-10.1l1.4 0.6c-14.4-7-28.2-15.4-40.9-25.1l0.6 0.4c-71.7-54.3-116.1-158-69.3-242.4l-25.2 34.9z"
+						fill="#0769AD" p-id="2563">
+					</path>
+				</svg>
+				JQuery
+
+			</div>
+			<div>
+				<style>
+.article-content .hljs-built_in, .article-content .hljs-builtin-name {
+    color: #0086b3;
+}.article-content .hljs-doctag, .article-content .hljs-string {
+    color: #d14;
+}.article-content .hljs-doctag, .article-content .hljs-string {
+    color: #d14;
+}.hljs-function{
+	color: #2154b4;
+}
+				</style>
+				<pre style="font-size: 14px; color: #fff;"><code class="hljs bash copyable" lang="bash">
+		&lt;input <span class="hljs-built_in">type</span>=<span class="hljs-string">"text"</span> value=<span class="hljs-string">""</span> size=<span class="hljs-string">"10"</span> id=<span class="hljs-string">"money"</span> /&gt;元
+		&lt;script&gt;
+			$(<span class="hljs-string">"#money"</span>).off(<span class="hljs-string">'blur'</span>).on(<span class="hljs-string">'blur'</span>, <span class="hljs-function"><span class="hljs-title">function</span></span>(){
+				format_input_num(this);
+			});
+		&lt;/script&gt;</code></pre>
+			</div>
+		</div>
+
+		<button>
+			<svg t="1602870675510" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+				p-id="3288" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<defs>
+					<style type="text/css"></style>
+				</defs>
+				<path
+					d="M882.23288889 749.45422222L526.90488889 950.38577778V793.94133333l221.41155556-121.856 133.91644444 77.36888889z m24.34844444-22.07288889V307.08622222l-129.93422222 75.09333333v270.22222223l129.93422222 74.97955555z m-766.17955555 22.07288889l355.328 201.04533333V793.94133333L274.20444445 672.08533333l-133.80266667 77.36888889zM116.05333333 727.38133333V307.08622222l129.93422222 75.09333333v270.22222223L116.05333333 727.38133333z m15.24622222-447.60177778l364.43022223-206.16533333v151.32444445L262.144 353.39377778l-1.82044445 1.024c0 0.11377778-129.024-74.63822222-129.024-74.63822223z m760.03555556 0L526.90488889 73.728v151.32444445l233.472 128.34133333 1.82044444 1.024 129.13777778-74.63822223z"
+					fill="#8ED6FB" p-id="3289"></path>
+				<path
+					d="M495.72977778 758.21511111l-218.45333333-120.14933333V400.15644445l218.45333333 126.17955555v231.87911111z m31.17511111 0l218.45333333-120.03555556V400.15644445l-218.45333333 126.17955555v231.87911111zM291.95377778 372.62222222l219.24977777-120.49066667L730.45333333 372.62222222 511.31733333 499.25688889 291.95377778 372.62222222z"
+					fill="#1C78C0" p-id="3290"></path>
+			</svg>
+		</button>
+		<div>
+			<div>
+				<svg t="1602870675510" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					p-id="3288" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<defs>
+						<style type="text/css"></style>
+					</defs>
+					<path
+						d="M882.23288889 749.45422222L526.90488889 950.38577778V793.94133333l221.41155556-121.856 133.91644444 77.36888889z m24.34844444-22.07288889V307.08622222l-129.93422222 75.09333333v270.22222223l129.93422222 74.97955555z m-766.17955555 22.07288889l355.328 201.04533333V793.94133333L274.20444445 672.08533333l-133.80266667 77.36888889zM116.05333333 727.38133333V307.08622222l129.93422222 75.09333333v270.22222223L116.05333333 727.38133333z m15.24622222-447.60177778l364.43022223-206.16533333v151.32444445L262.144 353.39377778l-1.82044445 1.024c0 0.11377778-129.024-74.63822222-129.024-74.63822223z m760.03555556 0L526.90488889 73.728v151.32444445l233.472 128.34133333 1.82044444 1.024 129.13777778-74.63822223z"
+						fill="#8ED6FB" p-id="3289"></path>
+					<path
+						d="M495.72977778 758.21511111l-218.45333333-120.14933333V400.15644445l218.45333333 126.17955555v231.87911111z m31.17511111 0l218.45333333-120.03555556V400.15644445l-218.45333333 126.17955555v231.87911111zM291.95377778 372.62222222l219.24977777-120.49066667L730.45333333 372.62222222 511.31733333 499.25688889 291.95377778 372.62222222z"
+						fill="#1C78C0" p-id="3290"></path>
+				</svg>
+				Webpack
+			</div>
+			<div>
+				<style></style>
+				<pre style="font-size: 14px; color: #62b1d8;">
+					<code class="lang-js">
+		<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+			entry<span class="token punctuation">:</span> <span class="token string">'./src/index.js'</span><span class="token punctuation">,</span>
+			output<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+					path<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+				filename<span class="token punctuation">:</span> <span class="token string">'bundle.js'</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span><span class="token punctuation">;</span>
+					</code></pre>
+			</div>
+		</div>
+
+		<button>
+			<svg t="1602870593357" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+				p-id="2269" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<defs>
+					<style type="text/css"></style>
+				</defs>
+				<path d="M615.6 123.6h165.5L512 589.7 242.9 123.6H63.5L512 900.4l448.5-776.9z" fill="#41B883" p-id="2270">
+				</path>
+				<path d="M781.1 123.6H615.6L512 303 408.4 123.6H242.9L512 589.7z" fill="#34495E" p-id="2271"></path>
+			</svg>
+		</button>
+		<div>
+			<div>
+				<svg t="1602870593357" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					p-id="2269" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<defs>
+						<style type="text/css"></style>
+					</defs>
+					<path d="M615.6 123.6h165.5L512 589.7 242.9 123.6H63.5L512 900.4l448.5-776.9z" fill="#41B883" p-id="2270">
+					</path>
+					<path d="M781.1 123.6H615.6L512 303 408.4 123.6H242.9L512 589.7z" fill="#34495E" p-id="2271"></path>
+				</svg>
+				Vue
+			</div>
+			<div>
+				<style>
+
+				</style>
+				<div class="language-vue-html line-numbers-mode" style="color:white !important;font-size: 14px !important;">
+		<pre class="language-vue-html"><code>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token interpolation"><span class="token punctuation">{{</span><span class="token inline-js language-js"> readersNumber </span><span class="token punctuation">}}</span></span> <span class="token interpolation"><span class="token punctuation">{{</span><span class="token inline-js language-js"> book<span class="token punctuation">.</span>title </span><span class="token punctuation">}}</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>			
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+					<span class="token keyword">import</span> <span class="token punctuation">{</span> ref<span class="token punctuation">,</span> reactive <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+					
+					<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+						<span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+							<span class="token keyword">const</span> readersNumber <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+							<span class="token keyword">const</span> book <span class="token operator">=</span> <span class="token function">reactive</span><span class="token punctuation">(</span><span class="token punctuation">{</span> title<span class="token operator">:</span> <span class="token string">'Vue 3 Guide'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+					
+							<span class="token comment">// expose to template</span>
+							<span class="token keyword">return</span> <span class="token punctuation">{</span>
+								readersNumber<span class="token punctuation">,</span>
+								book
+							<span class="token punctuation">}</span>
+						<span class="token punctuation">}</span>
+					<span class="token punctuation">}</span>
+				</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+					</code></pre>
+
+				</div>
+			</div>
+		</div>
+
+
+		<button>
+			<svg t="1602870523804" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+				p-id="5119" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<defs>
+					<style type="text/css"></style>
+				</defs>
+				<path d="M512 511.8m-80 0a80 80 0 1 0 160 0 80 80 0 1 0-160 0Z" fill="#61DAFB" p-id="5120"></path>
+				<path
+					d="M960.5 511.8c0-62.8-73.8-117.2-188.5-150.1 28.9-115.8 18.7-206.9-35.7-238.3-54.5-31.4-138.5 5.3-224.3 88.2-85.8-82.9-169.8-119.6-224.3-88.2-54.4 31.4-64.6 122.6-35.7 238.3C137.3 394.6 63.5 449 63.5 511.8S137.3 629 252 661.9c-28.9 115.7-18.7 206.9 35.7 238.3 13.4 7.8 28.6 11.6 45.2 11.6 39.7 0 87.8-21.8 140-64.2 13-10.6 26.1-22.6 39.1-35.2 13 12.6 26.1 24.6 39.1 35.2 52.2 42.4 100.2 64.2 140 64.2 16.6 0 31.8-3.8 45.2-11.6 54.4-31.4 64.6-122.5 35.7-238.3 114.7-32.9 188.5-87.3 188.5-150.1zM716.8 157.2c35.3 20.4 42.7 94.3 17.6 194.8-36.7-8.4-76.7-14.7-119.3-18.6-24.7-34.9-50.2-66.4-75.8-94 59.2-57.3 114.2-88.4 152-88.4 9.6-0.1 18.2 2 25.5 6.2zM637 584c-13.8 24-28.4 47-43.3 69-26.1 2-53.3 3.1-81.7 3.1-28.3 0-55.5-1.1-81.6-3.1-15-22-29.5-45.1-43.3-69-14.1-24.5-26.7-48.6-38.1-72.2 11.4-23.6 24-47.7 38.1-72.2 14.1-24.5 28.7-47.4 43.4-69.1 26.1-2 53.3-3.1 81.6-3.1 28.3 0 55.5 1.1 81.6 3.1 14.7 21.6 29.3 44.6 43.4 69 14.1 24.5 26.7 48.6 38.1 72.2-11.5 23.7-24.1 47.8-38.2 72.3z m58.8-26.4c11.2 26.6 20.4 52.1 28 76.5-24.9 5.6-51.7 10.4-80.3 14 9.3-14.5 18.4-29.3 27.3-44.6 8.8-15.4 17.1-30.7 25-45.9zM512 756.5c-17.7-19.2-35.1-40.1-52.2-62.6 17.1 0.8 34.5 1.3 52.2 1.3 17.7 0 35.1-0.5 52.2-1.3-17.1 22.5-34.5 43.4-52.2 62.6zM380.5 648.1c-28.6-3.6-55.3-8.4-80.3-14 7.6-24.4 16.8-49.9 28-76.5 7.9 15.2 16.1 30.5 25 45.9 8.9 15.2 18 30 27.3 44.6zM328.2 466c-11.2-26.6-20.4-52.1-28-76.5 24.9-5.6 51.6-10.4 80.2-14-9.2 14.4-18.4 29.2-27.2 44.6-8.8 15.4-17.1 30.7-25 45.9zM512 267.1c17.3 18.7 34.8 39.8 52.1 62.7-17.1-0.8-34.4-1.3-52.1-1.3-17.7 0-35 0.5-52.1 1.3 17.3-22.9 34.8-44 52.1-62.7z m158.7 153c-8.9-15.3-18-30.1-27.2-44.6 28.6 3.6 55.3 8.4 80.2 14-7.6 24.4-16.8 49.9-28 76.5-7.8-15.2-16.1-30.5-25-45.9zM307.2 157.2c7.2-4.2 15.8-6.2 25.6-6.2 37.8 0 92.7 31.1 151.9 88.4-25.6 27.6-51.1 59.2-75.8 94-42.5 3.9-82.6 10.2-119.3 18.6-25.1-100.6-17.6-174.5 17.6-194.8zM102.5 511.8c0-40.8 60.3-84.2 160-112.6 11.1 36 25.6 73.8 43.5 112.6-17.8 38.8-32.4 76.6-43.5 112.6-99.7-28.4-160-71.9-160-112.6z m345.8 305.5c-59.7 48.5-111.1 66.4-141.1 49.2-35.3-20.4-42.7-94.3-17.6-194.8 36.7 8.4 76.7 14.7 119.3 18.6 24.4 34.5 49.9 66.1 75.8 94.2-12.1 11.7-24.2 22.9-36.4 32.8z m268.5 49.2c-29.9 17.3-81.4-0.6-141.1-49.2-12.1-9.9-24.3-21.1-36.5-32.8 26-28.1 51.4-59.7 75.8-94.2 42.5-3.9 82.6-10.2 119.3-18.7 25.2 100.6 17.7 174.5-17.5 194.9z m44.8-242.1c-11.1-36-25.6-73.8-43.5-112.6 17.8-38.8 32.4-76.6 43.5-112.6 99.7 28.5 160 71.9 160 112.6-0.1 40.7-60.4 84.2-160 112.6z"
+					fill="#61DAFB" p-id="5121">
+				</path>
+			</svg>
+		</button>
+		<div>
+			<div>
+				<svg t="1602870523804" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					p-id="5119" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<defs>
+						<style type="text/css"></style>
+					</defs>
+					<path d="M512 511.8m-80 0a80 80 0 1 0 160 0 80 80 0 1 0-160 0Z" fill="#61DAFB" p-id="5120"></path>
+					<path
+						d="M960.5 511.8c0-62.8-73.8-117.2-188.5-150.1 28.9-115.8 18.7-206.9-35.7-238.3-54.5-31.4-138.5 5.3-224.3 88.2-85.8-82.9-169.8-119.6-224.3-88.2-54.4 31.4-64.6 122.6-35.7 238.3C137.3 394.6 63.5 449 63.5 511.8S137.3 629 252 661.9c-28.9 115.7-18.7 206.9 35.7 238.3 13.4 7.8 28.6 11.6 45.2 11.6 39.7 0 87.8-21.8 140-64.2 13-10.6 26.1-22.6 39.1-35.2 13 12.6 26.1 24.6 39.1 35.2 52.2 42.4 100.2 64.2 140 64.2 16.6 0 31.8-3.8 45.2-11.6 54.4-31.4 64.6-122.5 35.7-238.3 114.7-32.9 188.5-87.3 188.5-150.1zM716.8 157.2c35.3 20.4 42.7 94.3 17.6 194.8-36.7-8.4-76.7-14.7-119.3-18.6-24.7-34.9-50.2-66.4-75.8-94 59.2-57.3 114.2-88.4 152-88.4 9.6-0.1 18.2 2 25.5 6.2zM637 584c-13.8 24-28.4 47-43.3 69-26.1 2-53.3 3.1-81.7 3.1-28.3 0-55.5-1.1-81.6-3.1-15-22-29.5-45.1-43.3-69-14.1-24.5-26.7-48.6-38.1-72.2 11.4-23.6 24-47.7 38.1-72.2 14.1-24.5 28.7-47.4 43.4-69.1 26.1-2 53.3-3.1 81.6-3.1 28.3 0 55.5 1.1 81.6 3.1 14.7 21.6 29.3 44.6 43.4 69 14.1 24.5 26.7 48.6 38.1 72.2-11.5 23.7-24.1 47.8-38.2 72.3z m58.8-26.4c11.2 26.6 20.4 52.1 28 76.5-24.9 5.6-51.7 10.4-80.3 14 9.3-14.5 18.4-29.3 27.3-44.6 8.8-15.4 17.1-30.7 25-45.9zM512 756.5c-17.7-19.2-35.1-40.1-52.2-62.6 17.1 0.8 34.5 1.3 52.2 1.3 17.7 0 35.1-0.5 52.2-1.3-17.1 22.5-34.5 43.4-52.2 62.6zM380.5 648.1c-28.6-3.6-55.3-8.4-80.3-14 7.6-24.4 16.8-49.9 28-76.5 7.9 15.2 16.1 30.5 25 45.9 8.9 15.2 18 30 27.3 44.6zM328.2 466c-11.2-26.6-20.4-52.1-28-76.5 24.9-5.6 51.6-10.4 80.2-14-9.2 14.4-18.4 29.2-27.2 44.6-8.8 15.4-17.1 30.7-25 45.9zM512 267.1c17.3 18.7 34.8 39.8 52.1 62.7-17.1-0.8-34.4-1.3-52.1-1.3-17.7 0-35 0.5-52.1 1.3 17.3-22.9 34.8-44 52.1-62.7z m158.7 153c-8.9-15.3-18-30.1-27.2-44.6 28.6 3.6 55.3 8.4 80.2 14-7.6 24.4-16.8 49.9-28 76.5-7.8-15.2-16.1-30.5-25-45.9zM307.2 157.2c7.2-4.2 15.8-6.2 25.6-6.2 37.8 0 92.7 31.1 151.9 88.4-25.6 27.6-51.1 59.2-75.8 94-42.5 3.9-82.6 10.2-119.3 18.6-25.1-100.6-17.6-174.5 17.6-194.8zM102.5 511.8c0-40.8 60.3-84.2 160-112.6 11.1 36 25.6 73.8 43.5 112.6-17.8 38.8-32.4 76.6-43.5 112.6-99.7-28.4-160-71.9-160-112.6z m345.8 305.5c-59.7 48.5-111.1 66.4-141.1 49.2-35.3-20.4-42.7-94.3-17.6-194.8 36.7 8.4 76.7 14.7 119.3 18.6 24.4 34.5 49.9 66.1 75.8 94.2-12.1 11.7-24.2 22.9-36.4 32.8z m268.5 49.2c-29.9 17.3-81.4-0.6-141.1-49.2-12.1-9.9-24.3-21.1-36.5-32.8 26-28.1 51.4-59.7 75.8-94.2 42.5-3.9 82.6-10.2 119.3-18.7 25.2 100.6 17.7 174.5-17.5 194.9z m44.8-242.1c-11.1-36-25.6-73.8-43.5-112.6 17.8-38.8 32.4-76.6 43.5-112.6 99.7 28.5 160 71.9 160 112.6-0.1 40.7-60.4 84.2-160 112.6z"
+						fill="#61DAFB" p-id="5121">
+					</path>
+				</svg>
+				React
+			</div>
+			<div>
+				<style>
+					.css-15weewl .gatsby-highlight,
+					[data-css-15weewl] .gatsby-highlight {
+						margin-top: 25px;
+						margin-left: -30px;
+						margin-right: -30px;
+						margin-bottom: 25px;
+						padding-left: 15px;
+						padding-right: 15px;
+					}
+
+					.token.keyword {
+						color: rgb(197, 165, 197);
+					}
+
+					.token.punctuation {
+						color: rgb(136, 198, 190);
+					}
+
+					.token.function {
+						color: rgb(121, 182, 242);
+					}
+
+
+
+					.token.comment,
+					.token.block-comment,
+					.token.prolog,
+					.token.doctype,
+					.token.cdata {
+						color: rgb(178, 178, 178);
+					}
+
+					.token.tag {
+						color: rgb(252, 146, 158);
+					}
+
+					.gatsby-highlight {
+						color: rgb(255, 255, 255);
+						tab-size: 1.5em;
+
+						border-radius: 10px;
+						overflow: auto;
+					}
+
+					.gatsby-highlight>code[class*="gatsby-code-"],
+					.gatsby-highlight>pre[class*="gatsby-code-"],
+					.gatsby-highlight>pre.prism-code {
+						font-size: 14px;
+						line-height: 20px;
+						white-space: pre-wrap;
+						word-break: break-word;
+						height: auto !important;
+						margin: 1rem;
+					}
+
+					code,
+					pre {
+						font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+					}
+				</style>
+				<div class="gatsby-highlight has-highlighted-lines" data-language="jsx">
+					<pre class="gatsby-code-jsx"><code class="gatsby-code-jsx">
+					<span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+					<span class="token keyword">function</span> <span class="token function">Example</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+					<span class="gatsby-highlight-code-line">  <span class="token keyword">const</span> <span class="token punctuation">[</span>count<span class="token punctuation">,</span> setCount<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+						<span class="token keyword">return</span> <span class="token punctuation">(</span>
+							<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text"></span>
+					<span class="token plain-text">      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">You clicked </span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token plain-text"> times</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token plain-text"></span>
+					<span class="token plain-text">      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">setCount</span><span class="token punctuation">(</span>count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text"></span>
+					<span class="token plain-text">        Click me</span>
+					<span class="token plain-text">      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span><span class="token plain-text"></span>
+					<span class="token plain-text">    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+						<span class="token punctuation">)</span><span class="token punctuation">;</span>
+					<span class="token punctuation">}</span></code></pre>
+				</div>
+			</div>
+		</div>
+
+
+		<button>
+			<svg t="1602870556083" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+				p-id="5874" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<defs>
+					<style type="text/css"></style>
+				</defs>
+				<path d="M435.8 536.2H512V353z" fill="#DD0031" p-id="5875"></path>
+				<path d="M400.9 616.8l-52.4 130.8h-97.2L512 163V64L94.9 212.7l63.6 551.5L512 960V616.8z" fill="#DD0031"
+					p-id="5876">
+				</path>
+				<path d="M512 353v183.2h76.2z" fill="#C3002F" p-id="5877"></path>
+				<path d="M512 64v99l259.8 584.6h-97.2l-52.4-130.8H512V960l353.5-195.8 63.6-551.5z" fill="#C3002F" p-id="5878">
+				</path>
+			</svg>
+		</button>
+		<div>
+			<div>
+				<svg t="1602870556083" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					p-id="5874" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<defs>
+						<style type="text/css"></style>
+					</defs>
+					<path d="M435.8 536.2H512V353z" fill="#DD0031" p-id="5875"></path>
+					<path d="M400.9 616.8l-52.4 130.8h-97.2L512 163V64L94.9 212.7l63.6 551.5L512 960V616.8z" fill="#DD0031"
+						p-id="5876">
+					</path>
+					<path d="M512 353v183.2h76.2z" fill="#C3002F" p-id="5877"></path>
+					<path d="M512 64v99l259.8 584.6h-97.2l-52.4-130.8H512V960l353.5-195.8 63.6-551.5z" fill="#C3002F" p-id="5878">
+					</path>
+				</svg>
+				Angular
+			</div>
+			<div>
+				<style>
+					.prettyprint {
+							position: relative;
+					}
+					aio-code pre {
+							display: flex;
+							min-height: 32px;
+							margin: 16px 24px;
+							white-space: pre-wrap;
+							align-items: center;
+					}
+					.kwd {
+							color: #00f;
+					}
+					.clo, .opn, .pun {
+    color: #660;
+}
+.str {
+    color: #800;
+}
+.typ {
+    color: red;
+}
+.lit {
+    color: #08c;
+}
+.pln {
+    color: #000;
+}
+				</style>
+		<pre class="lang- prettyprint" style="font-size: 14px;"> 
+		<code class="animated fadeIn"><span class="kwd">import</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span  class="code-anchor"><span class="typ">Component</span></span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">from</span><span class="pln"> </span><span class="str">'@angular/core'</span><span class="pun">;</span><span class="pln">
+	
+				</span><span class="lit">@</span><span class="code-anchor"><span class="lit">Component</span></span><span class="pun">({</span><span class="pln">
+					selector</span><span class="pun">:</span><span class="pln"> </span><span class="str">'app-root'</span><span class="pun">,</span><span class="pln">
+					</span><span class="kwd">template</span><span class="pun">:</span><span class="pln"> </span><span class="str">`
+						&lt;h1&gt;{{title}}&lt;/h1&gt;
+						&lt;h2&gt;My favorite hero is: {{myHero}}&lt;/h2&gt;
+						`</span><span class="pln">
+				</span><span class="pun">})</span><span class="pln">
+				</span><span class="kwd">export</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">AppComponent</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+					title </span><span class="pun">=</span><span class="pln"> </span><span class="str">'Tour of Heroes'</span><span class="pun">;</span><span class="pln">
+					myHero </span><span class="pun">=</span><span class="pln"> </span><span class="str">'Windstorm'</span><span class="pun">;</span><span class="pln">
+				</span><span class="pun">}</span></code>
+						</pre>
+			</div>
+		</div>
+
+
+		<button>
+			<svg t="1602870659911" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+				p-id="3142" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<defs>
+					<style type="text/css"></style>
+				</defs>
+				<path
+					d="M875.2 262.3L546.7 72.7c-20.7-11.8-48.3-11.8-69 0L148.8 262.3c-21.5 12.2-34.5 34.9-34.5 59.7v379.2c0 24.8 13.4 47.9 34.5 60.1l86.1 49.5c41.8 20.7 56.8 20.7 75.9 20.7 62.1 0 97.4-37.8 97.4-102.7V354.4c0-5.3-4.1-9.3-9.3-9.3h-41.4c-5.3 0-9.3 4.1-9.3 9.3v374.3c0 28.8-30 57.7-78.8 33.3l-90.1-52c-3.2-2-5.3-5.3-5.3-8.9V321.9c0-3.7 2-7.3 5.3-8.9l328.1-190c3.2-1.6 7.3-1.6 10.2 0l328.5 189.6c3.2 1.6 5.3 5.3 5.3 8.9v379.2c0 3.7-2 7.3-4.9 8.9L517.9 899.3c-2.8 1.6-7.3 1.6-10.2 0l-84.4-49.9c-2.4-1.2-5.7-1.6-8.1-0.4-23.1 13.4-27.6 15-49.5 22.7-5.7 1.6-13.4 4.9 2.8 14.2l109.6 65c10.6 6.1 22.3 9.3 34.5 9.3 11.8-0.4 24-3.2 34.1-9.7l328.5-189.6c21.1-12.2 34.5-34.9 34.5-59.7V321.9c0-24.3-13.4-47.5-34.5-59.6z"
+					fill="#689F63" p-id="3143">
+				</path>
+				<path
+					d="M614.1 641.1c-86.9 0-106-21.9-112.5-65-0.8-4.9-4.5-8.1-9.3-8.1h-42.6c-5.3 0-9.3 4.1-9.3 9.3 0 55.2 30 121.4 173.8 121.4l-0.4-0.4c103.9 0 163.6-41 163.6-112.5 0-70.6-47.9-89.7-149-103.1-101.9-13.4-112.5-20.3-112.5-44.3 0-19.5 8.9-45.9 84.4-45.9 67.8 0 92.6 14.6 102.7 60.1 1.2 4.1 4.9 7.3 9.3 7.3H755c2.4 0 5.3-0.8 6.9-2.8 1.6-2 2.8-4.5 2.4-7.3-6.9-78.4-58.9-114.9-164-114.9-93.4 0-149.4 39.4-149.4 105.6 0 71.9 55.6 91.8 145.8 100.7 107.6 10.6 116.1 26.4 116.1 47.5 0 36.5-29.3 52.4-98.7 52.4z"
+					fill="#689F63" p-id="3144">
+				</path>
+			</svg>
+		</button>
+		<div>
+			<div>
+				<svg t="1602870659911" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					p-id="3142" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<defs>
+						<style type="text/css"></style>
+					</defs>
+					<path
+						d="M875.2 262.3L546.7 72.7c-20.7-11.8-48.3-11.8-69 0L148.8 262.3c-21.5 12.2-34.5 34.9-34.5 59.7v379.2c0 24.8 13.4 47.9 34.5 60.1l86.1 49.5c41.8 20.7 56.8 20.7 75.9 20.7 62.1 0 97.4-37.8 97.4-102.7V354.4c0-5.3-4.1-9.3-9.3-9.3h-41.4c-5.3 0-9.3 4.1-9.3 9.3v374.3c0 28.8-30 57.7-78.8 33.3l-90.1-52c-3.2-2-5.3-5.3-5.3-8.9V321.9c0-3.7 2-7.3 5.3-8.9l328.1-190c3.2-1.6 7.3-1.6 10.2 0l328.5 189.6c3.2 1.6 5.3 5.3 5.3 8.9v379.2c0 3.7-2 7.3-4.9 8.9L517.9 899.3c-2.8 1.6-7.3 1.6-10.2 0l-84.4-49.9c-2.4-1.2-5.7-1.6-8.1-0.4-23.1 13.4-27.6 15-49.5 22.7-5.7 1.6-13.4 4.9 2.8 14.2l109.6 65c10.6 6.1 22.3 9.3 34.5 9.3 11.8-0.4 24-3.2 34.1-9.7l328.5-189.6c21.1-12.2 34.5-34.9 34.5-59.7V321.9c0-24.3-13.4-47.5-34.5-59.6z"
+						fill="#689F63" p-id="3143">
+					</path>
+					<path
+						d="M614.1 641.1c-86.9 0-106-21.9-112.5-65-0.8-4.9-4.5-8.1-9.3-8.1h-42.6c-5.3 0-9.3 4.1-9.3 9.3 0 55.2 30 121.4 173.8 121.4l-0.4-0.4c103.9 0 163.6-41 163.6-112.5 0-70.6-47.9-89.7-149-103.1-101.9-13.4-112.5-20.3-112.5-44.3 0-19.5 8.9-45.9 84.4-45.9 67.8 0 92.6 14.6 102.7 60.1 1.2 4.1 4.9 7.3 9.3 7.3H755c2.4 0 5.3-0.8 6.9-2.8 1.6-2 2.8-4.5 2.4-7.3-6.9-78.4-58.9-114.9-164-114.9-93.4 0-149.4 39.4-149.4 105.6 0 71.9 55.6 91.8 145.8 100.7 107.6 10.6 116.1 26.4 116.1 47.5 0 36.5-29.3 52.4-98.7 52.4z"
+						fill="#689F63" p-id="3144">
+					</path>
+				</svg>
+				NodeJs
+			</div>
+			<div>
+				<style>
+					.hljs-attribute, .hljs-keyword {
+    color: rgb(74, 74, 190);
+}
+.hljs-string, .hljs-regexp, .hljs-number {
+    color:#689F63;
+}
+.hljs-doctag .hljs-type, .hljs-doctag .hljs-variable, .hljs-comment {
+    color: #666;
+    font-weight: lighter;
+}
+				</style>
+				<pre style="color: #fff; font-size: 14px;"><code class="language-js">
+		<span class="hljs-keyword">const</span> http2 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http2'</span>);
+		<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+
+		<span class="hljs-keyword">const</span> server = http2.createSecureServer({
+			<span class="hljs-attr">key</span>: fs.readFileSync(<span class="hljs-string">'localhost-privkey.pem'</span>),
+			<span class="hljs-attr">cert</span>: fs.readFileSync(<span class="hljs-string">'localhost-cert.pem'</span>)
+		});
+		server.on(<span class="hljs-string">'error'</span>, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.error(err));
+
+		server.on(<span class="hljs-string">'stream'</span>, <span class="hljs-function">(<span class="hljs-params">stream, headers</span>) =&gt;</span> {
+			<span class="hljs-comment">// stream is a Duplex</span>
+			stream.respond({
+				<span class="hljs-string">'content-type'</span>: <span class="hljs-string">'text/html; charset=utf-8'</span>,
+				<span class="hljs-string">':status'</span>: <span class="hljs-number">200</span>
+			});
+			stream.end(<span class="hljs-string">'&lt;h1&gt;Hello World&lt;/h1&gt;'</span>);
+		});
+
+		server.listen(<span class="hljs-number">8443</span>);</code></pre>
+			</div>
+		</div>
+
+		<button>
+			<svg t="1602870647773" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+				p-id="2997" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<defs>
+					<style type="text/css"></style>
+				</defs>
+				<path
+					d="M856.96 565.22666667c-33.38666667 0.21333333-62.4 8.21333333-86.61333333 20.16-8.96-17.70666667-17.92-33.28-19.41333334-44.8-1.70666667-13.44-3.73333333-21.65333333-1.70666666-37.76 2.02666667-16.10666667 11.41333333-38.82666667 11.41333333-40.74666667-0.21333333-1.70666667-2.02666667-9.92-21.33333333-10.13333333-19.2-0.21333333-35.84 3.73333333-37.76 8.74666666-1.92 5.01333333-5.65333333 16.64-8 28.58666667-3.41333333 17.6-38.50666667 79.78666667-58.45333334 112.42666667-6.50666667-12.69333333-12.16-23.89333333-13.22666666-32.85333334-1.70666667-13.44-3.73333333-21.65333333-1.70666667-37.76s11.41333333-38.82666667 11.41333333-40.74666666c-0.21333333-1.70666667-2.02666667-9.92-21.33333333-10.13333334-19.2-0.21333333-35.84 3.73333333-37.76 8.74666667-1.92 5.01333333-3.94666667 16.96-8 28.58666667-3.94666667 11.62666667-50.56 115.41333333-62.72 142.50666666-6.18666667 13.86666667-11.62666667 24.85333333-15.46666667 32.32-3.94666667 7.46666667-0.21333333 0.53333333-0.53333333 1.28-3.41333333 6.4-5.22666667 9.92-5.22666667 9.92v0.21333334c-2.66666667 4.69333333-5.44 9.17333333-6.72 9.17333333-0.96 0-2.77333333-12.48 0.42666667-29.65333333 6.93333333-36.05333333 23.68-92.26666667 23.57333333-94.29333334 0-0.96 3.2-10.88-10.88-15.89333333-13.65333333-5.01333333-18.45333333 3.41333333-19.62666666 3.41333333s-2.02666667 2.98666667-2.02666667 2.98666667S480.32 516.26666667 436.26666667 516.26666667c-27.62666667 0-65.70666667 30.08-84.58666667 57.49333333-11.94666667 6.50666667-37.33333333 20.37333333-64.21333333 35.09333333-10.24 5.65333333-20.90666667 11.62666667-31.04 16.96l-2.02666667-2.24c-53.44-56.96-152.21333333-97.28-148.05333333-173.86666666 1.49333333-27.84 11.2-101.22666667 189.76-190.08 146.24-72.85333333 263.36-52.8 283.62666666-8.42666667 28.90666667 63.46666667-62.61333333 181.54666667-214.61333333 198.50666667-57.92 6.50666667-88.32-15.89333333-96-24.32-8-8.74666667-9.17333333-9.17333333-12.16-7.46666667-4.90666667 2.66666667-1.92 10.45333333 0 15.14666667 4.48 11.73333333 23.14666667 32.64 54.93333333 43.09333333 27.84 9.17333333 95.78666667 14.18666667 178.02666667-17.6 92.05333333-35.62666667 163.94666667-134.61333333 142.82666667-217.38666667-21.44-84.26666667-161.17333333-111.89333333-293.22666667-64.96-78.61333333 28.05333333-163.73333333 71.68-225.06666667 129.06666667C41.6 373.44 30.08 432.74666667 34.88 457.38666667c16.96 88 138.24 145.28 186.77333333 187.73333333-2.45333333 1.28-4.69333333 2.66666667-6.72 3.73333333-24.32 11.94666667-116.69333333 60.37333333-139.84 111.46666667-26.13333333 57.92 4.16 99.52 24.32 105.17333333 62.4 17.38666667 126.29333333-13.86666667 160.74666667-65.17333333 34.34666667-51.30666667 30.29333333-118.08 14.4-148.48l-0.53333333-1.17333333 19.09333333-11.2c12.37333333-7.25333333 24.42666667-13.97333333 35.09333333-19.84-5.97333333 16.21333333-10.24 35.52-12.48 63.46666666-2.66666667 32.85333333 10.88 75.41333333 28.58666667 92.26666667 7.89333333 7.25333333 17.17333333 7.46666667 22.93333333 7.46666667 20.58666667 0 29.86666667-16.96 40.10666667-37.33333334 12.69333333-24.85333333 23.89333333-53.54666667 23.89333333-53.54666666s-13.97333333 77.86666667 24.32 77.86666666c13.97333333 0 28.05333333-18.13333333 34.34666667-27.41333333v0.21333333s0.42666667-0.53333333 1.17333333-1.92c1.49333333-2.24 2.24-3.52 2.24-3.52v-0.42666666c5.65333333-9.70666667 18.13333333-31.89333333 36.8-68.69333334 24.10666667-47.46666667 47.25333333-106.77333333 47.25333334-106.77333333s2.24 14.61333333 9.17333333 38.50666667c4.16 14.18666667 13.12 29.65333333 19.94666667 44.8-5.65333333 7.89333333-8.96 12.37333333-8.96 12.37333333l0.21333333 0.21333333c-4.48 5.97333333-9.49333333 12.37333333-14.72 18.66666667-19.09333333 22.82666667-41.81333333 48.74666667-44.8 56.21333333-3.52 8.74666667-2.77333333 15.36 4.16 20.58666667 5.01333333 3.73333333 13.97333333 4.48 23.57333333 3.73333333 17.17333333-1.17333333 29.12-5.44 35.09333334-8 9.38666667-3.41333333 19.94666667-8.42666667 30.29333333-15.89333333 18.66666667-13.86666667 30.08-33.38666667 28.90666667-59.62666667-0.53333333-14.4-5.22666667-28.58666667-10.98666667-42.02666666 1.70666667-2.45333333 3.41333333-4.90666667 5.01333333-7.46666667 29.54666667-43.09333333 52.26666667-90.56 52.26666667-90.56s2.24 14.61333333 9.17333333 38.50666667c3.52 12.16 10.66666667 25.38666667 16.96 38.50666666-27.62666667 22.61333333-45.01333333 48.74666667-50.98666666 65.92-10.98666667 31.78666667-2.45333333 46.08 13.86666666 49.49333334 7.25333333 1.49333333 17.70666667-1.92 25.6-5.22666667 9.70666667-3.2 21.44-8.64 32.32-16.64 18.66666667-13.86666667 36.58666667-33.06666667 35.62666667-58.98666667-0.53333333-11.94666667-3.73333333-23.68-8-34.88 23.57333333-9.70666667 53.97333333-15.36 92.58666667-10.66666666 83.09333333 9.70666667 99.52 61.65333333 96.32 83.30666666-3.2 21.65333333-20.58666667 33.6-26.34666667 37.33333334-5.76 3.52-7.68 4.90666667-7.14666667 7.46666666 0.74666667 3.94666667 3.41333333 3.73333333 8.42666667 2.98666667 6.93333333-1.17333333 43.73333333-17.70666667 45.22666667-57.70666667 2.02666667-51.52-46.72-107.62666667-133.22666667-106.98666666zM216.10666667 781.22666667c-27.41333333 30.08-66.13333333 41.49333333-82.56 31.78666666-17.70666667-10.24-10.88-54.50666667 22.93333333-86.50666666 20.58666667-19.41333333 47.25333333-37.33333333 64.85333333-48.32 3.94666667-2.45333333 9.92-5.97333333 16.96-10.24 1.17333333-0.74666667 1.92-1.17333333 1.92-1.17333334 1.28-0.74666667 2.77333333-1.70666667 4.26666667-2.66666666 12.48 45.65333333 0.53333333 85.65333333-28.37333333 117.12z m200.74666666-136.42666667c-9.49333333 23.36-29.65333333 83.30666667-41.81333333 79.89333333-10.45333333-2.77333333-16.85333333-48.21333333-2.02666667-93.01333333 7.46666667-22.61333333 23.36-49.49333333 32.64-59.94666667 15.14666667-16.85333333 31.57333333-22.4 35.62666667-15.46666666 4.90666667 8.96-18.45333333 73.92-24.42666667 88.53333333z m165.65333334 79.14666667c-4.16 2.02666667-7.89333333 3.52-9.49333334 2.45333333-1.28-0.74666667 1.70666667-3.52 1.70666667-3.52s20.69333333-22.18666667 28.90666667-32.53333333c4.69333333-5.97333333 10.24-12.90666667 16.21333333-20.69333334v2.24c0 26.88-25.81333333 44.8-37.33333333 52.05333334z m127.68-29.12c-2.98666667-2.24-2.66666667-9.17333333 7.46666666-30.82666667 3.94666667-8.64 12.90666667-22.93333333 28.37333334-36.58666667 1.92 5.65333333 2.98666667 10.98666667 2.77333333 16.10666667-0.10666667 33.49333333-24 46.08-38.61333333 51.30666667z"
+					fill="#CF649A" p-id="2998">
+				</path>
+			</svg>
+		</button>
+		<div>
+			<div>
+				<svg t="1602870647773" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					p-id="2997" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<defs>
+						<style type="text/css"></style>
+					</defs>
+					<path
+						d="M856.96 565.22666667c-33.38666667 0.21333333-62.4 8.21333333-86.61333333 20.16-8.96-17.70666667-17.92-33.28-19.41333334-44.8-1.70666667-13.44-3.73333333-21.65333333-1.70666666-37.76 2.02666667-16.10666667 11.41333333-38.82666667 11.41333333-40.74666667-0.21333333-1.70666667-2.02666667-9.92-21.33333333-10.13333333-19.2-0.21333333-35.84 3.73333333-37.76 8.74666666-1.92 5.01333333-5.65333333 16.64-8 28.58666667-3.41333333 17.6-38.50666667 79.78666667-58.45333334 112.42666667-6.50666667-12.69333333-12.16-23.89333333-13.22666666-32.85333334-1.70666667-13.44-3.73333333-21.65333333-1.70666667-37.76s11.41333333-38.82666667 11.41333333-40.74666666c-0.21333333-1.70666667-2.02666667-9.92-21.33333333-10.13333334-19.2-0.21333333-35.84 3.73333333-37.76 8.74666667-1.92 5.01333333-3.94666667 16.96-8 28.58666667-3.94666667 11.62666667-50.56 115.41333333-62.72 142.50666666-6.18666667 13.86666667-11.62666667 24.85333333-15.46666667 32.32-3.94666667 7.46666667-0.21333333 0.53333333-0.53333333 1.28-3.41333333 6.4-5.22666667 9.92-5.22666667 9.92v0.21333334c-2.66666667 4.69333333-5.44 9.17333333-6.72 9.17333333-0.96 0-2.77333333-12.48 0.42666667-29.65333333 6.93333333-36.05333333 23.68-92.26666667 23.57333333-94.29333334 0-0.96 3.2-10.88-10.88-15.89333333-13.65333333-5.01333333-18.45333333 3.41333333-19.62666666 3.41333333s-2.02666667 2.98666667-2.02666667 2.98666667S480.32 516.26666667 436.26666667 516.26666667c-27.62666667 0-65.70666667 30.08-84.58666667 57.49333333-11.94666667 6.50666667-37.33333333 20.37333333-64.21333333 35.09333333-10.24 5.65333333-20.90666667 11.62666667-31.04 16.96l-2.02666667-2.24c-53.44-56.96-152.21333333-97.28-148.05333333-173.86666666 1.49333333-27.84 11.2-101.22666667 189.76-190.08 146.24-72.85333333 263.36-52.8 283.62666666-8.42666667 28.90666667 63.46666667-62.61333333 181.54666667-214.61333333 198.50666667-57.92 6.50666667-88.32-15.89333333-96-24.32-8-8.74666667-9.17333333-9.17333333-12.16-7.46666667-4.90666667 2.66666667-1.92 10.45333333 0 15.14666667 4.48 11.73333333 23.14666667 32.64 54.93333333 43.09333333 27.84 9.17333333 95.78666667 14.18666667 178.02666667-17.6 92.05333333-35.62666667 163.94666667-134.61333333 142.82666667-217.38666667-21.44-84.26666667-161.17333333-111.89333333-293.22666667-64.96-78.61333333 28.05333333-163.73333333 71.68-225.06666667 129.06666667C41.6 373.44 30.08 432.74666667 34.88 457.38666667c16.96 88 138.24 145.28 186.77333333 187.73333333-2.45333333 1.28-4.69333333 2.66666667-6.72 3.73333333-24.32 11.94666667-116.69333333 60.37333333-139.84 111.46666667-26.13333333 57.92 4.16 99.52 24.32 105.17333333 62.4 17.38666667 126.29333333-13.86666667 160.74666667-65.17333333 34.34666667-51.30666667 30.29333333-118.08 14.4-148.48l-0.53333333-1.17333333 19.09333333-11.2c12.37333333-7.25333333 24.42666667-13.97333333 35.09333333-19.84-5.97333333 16.21333333-10.24 35.52-12.48 63.46666666-2.66666667 32.85333333 10.88 75.41333333 28.58666667 92.26666667 7.89333333 7.25333333 17.17333333 7.46666667 22.93333333 7.46666667 20.58666667 0 29.86666667-16.96 40.10666667-37.33333334 12.69333333-24.85333333 23.89333333-53.54666667 23.89333333-53.54666666s-13.97333333 77.86666667 24.32 77.86666666c13.97333333 0 28.05333333-18.13333333 34.34666667-27.41333333v0.21333333s0.42666667-0.53333333 1.17333333-1.92c1.49333333-2.24 2.24-3.52 2.24-3.52v-0.42666666c5.65333333-9.70666667 18.13333333-31.89333333 36.8-68.69333334 24.10666667-47.46666667 47.25333333-106.77333333 47.25333334-106.77333333s2.24 14.61333333 9.17333333 38.50666667c4.16 14.18666667 13.12 29.65333333 19.94666667 44.8-5.65333333 7.89333333-8.96 12.37333333-8.96 12.37333333l0.21333333 0.21333333c-4.48 5.97333333-9.49333333 12.37333333-14.72 18.66666667-19.09333333 22.82666667-41.81333333 48.74666667-44.8 56.21333333-3.52 8.74666667-2.77333333 15.36 4.16 20.58666667 5.01333333 3.73333333 13.97333333 4.48 23.57333333 3.73333333 17.17333333-1.17333333 29.12-5.44 35.09333334-8 9.38666667-3.41333333 19.94666667-8.42666667 30.29333333-15.89333333 18.66666667-13.86666667 30.08-33.38666667 28.90666667-59.62666667-0.53333333-14.4-5.22666667-28.58666667-10.98666667-42.02666666 1.70666667-2.45333333 3.41333333-4.90666667 5.01333333-7.46666667 29.54666667-43.09333333 52.26666667-90.56 52.26666667-90.56s2.24 14.61333333 9.17333333 38.50666667c3.52 12.16 10.66666667 25.38666667 16.96 38.50666666-27.62666667 22.61333333-45.01333333 48.74666667-50.98666666 65.92-10.98666667 31.78666667-2.45333333 46.08 13.86666666 49.49333334 7.25333333 1.49333333 17.70666667-1.92 25.6-5.22666667 9.70666667-3.2 21.44-8.64 32.32-16.64 18.66666667-13.86666667 36.58666667-33.06666667 35.62666667-58.98666667-0.53333333-11.94666667-3.73333333-23.68-8-34.88 23.57333333-9.70666667 53.97333333-15.36 92.58666667-10.66666666 83.09333333 9.70666667 99.52 61.65333333 96.32 83.30666666-3.2 21.65333333-20.58666667 33.6-26.34666667 37.33333334-5.76 3.52-7.68 4.90666667-7.14666667 7.46666666 0.74666667 3.94666667 3.41333333 3.73333333 8.42666667 2.98666667 6.93333333-1.17333333 43.73333333-17.70666667 45.22666667-57.70666667 2.02666667-51.52-46.72-107.62666667-133.22666667-106.98666666zM216.10666667 781.22666667c-27.41333333 30.08-66.13333333 41.49333333-82.56 31.78666666-17.70666667-10.24-10.88-54.50666667 22.93333333-86.50666666 20.58666667-19.41333333 47.25333333-37.33333333 64.85333333-48.32 3.94666667-2.45333333 9.92-5.97333333 16.96-10.24 1.17333333-0.74666667 1.92-1.17333333 1.92-1.17333334 1.28-0.74666667 2.77333333-1.70666667 4.26666667-2.66666666 12.48 45.65333333 0.53333333 85.65333333-28.37333333 117.12z m200.74666666-136.42666667c-9.49333333 23.36-29.65333333 83.30666667-41.81333333 79.89333333-10.45333333-2.77333333-16.85333333-48.21333333-2.02666667-93.01333333 7.46666667-22.61333333 23.36-49.49333333 32.64-59.94666667 15.14666667-16.85333333 31.57333333-22.4 35.62666667-15.46666666 4.90666667 8.96-18.45333333 73.92-24.42666667 88.53333333z m165.65333334 79.14666667c-4.16 2.02666667-7.89333333 3.52-9.49333334 2.45333333-1.28-0.74666667 1.70666667-3.52 1.70666667-3.52s20.69333333-22.18666667 28.90666667-32.53333333c4.69333333-5.97333333 10.24-12.90666667 16.21333333-20.69333334v2.24c0 26.88-25.81333333 44.8-37.33333333 52.05333334z m127.68-29.12c-2.98666667-2.24-2.66666667-9.17333333 7.46666666-30.82666667 3.94666667-8.64 12.90666667-22.93333333 28.37333334-36.58666667 1.92 5.65333333 2.98666667 10.98666667 2.77333333 16.10666667-0.10666667 33.49333333-24 46.08-38.61333333 51.30666667z"
+						fill="#CF649A" p-id="2998">
+					</path>
+				</svg>
+				Sass
+			</div>
+			<div>
+				<style>
+					.hljs-variable{
+						color: #CF649A;
+					}
+				</style>
+				<pre style="color: #fff; font-size: 14px;"><code class="hljs bash copyable" lang="bash">
+	<span class="hljs-variable">$fontStack</span>: Helvetica, sans-serif;
+	<span class="hljs-variable">$primaryColor</span>: <span>#333;</span>
+					
+	body {
+		font-family: <span class="hljs-variable">$fontStack</span>;
+		color: <span class="hljs-variable">$primaryColor</span>;
+	}
+					</code></pre>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+
+</html>
+<script>
+	var btns = document.querySelectorAll('button');
+	const target = {
+		value: btns[0].nextElementSibling,
+		svg: btns[0].querySelector('svg'),
+	}
+	for (let i = 0; i < btns.length; i++) {
+		btns[i].onclick = function () {
+			target.value && (target.value.style.transform = `scale(0)`);
+			target.svg && (target.svg.style.filter = `grayscale(1)`);
+			this.nextElementSibling.style.transform = `scale(1)`;
+			target.value = this.nextElementSibling;
+			const svg = this.querySelector('svg');
+			svg.style.filter = `grayscale(0)`;
+			target.svg = svg;
+		}
+	}
+</script>

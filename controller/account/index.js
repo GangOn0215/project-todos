@@ -14,8 +14,8 @@ const getMember = async (username) => {
 
 const createMember = async (userOBJ) => {
   const result = await query('createMember', userOBJ);
+
   return result;
-  console.log(userOBJ);
 }
 
 module.exports = {

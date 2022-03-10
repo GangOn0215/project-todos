@@ -141,7 +141,7 @@ nav ul li {
   height: 60%;
 }
 .todos-body ul li {
-  padding: 2px;
+  padding: 2px 4px;
   display: flex;
   justify-content: space-between;
   border: 1px solid #444;

@@ -24,5 +24,4 @@ const query = async (alias, values) => {
   });
 }
 
-// module.exports = connection;
 module.exports = query;

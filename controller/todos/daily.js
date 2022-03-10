@@ -8,16 +8,30 @@ const query = require('../../models/DB');
  * 
  */
 
+const readTodoDatasAll = async () => {
+  return query('selectTodosAll');
+}
+
 const readTodoDatas = async (uid) => {
-  return new Promise((resolve, reject) => {
-    const todos = query('selectTodos', uid);
-    
-    resolve(todos);
-  }).catch((err) => {
-    console.log(err);
-  });
+  return query('selectTodos', uid);
+}
+
+const createTodos = async (values) => {
+  return query('createTodos', values);
+}
+
+const updateTodos = async (values) => {
+  return query('updateTodos', values);
+}
+
+const deleteTodos = async (values) => {
+  return query('deleteTodos', values);
 }
 
 module.exports = {
+  readTodoDatasAll,
   readTodoDatas,
+  createTodos,
+  updateTodos,
+  deleteTodos
 }
