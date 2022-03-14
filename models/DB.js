@@ -11,9 +11,19 @@ const connection = mysql.createPool({
   database: process.env.MYSQL_DB,
 });
 
-const query = async (alias, values) => {
-  return new Promise((resolve, reject) => connection.query(sql[alias], values, (error, results) => {
-    console.log('break');
+const query = async (alias, values, days, periodicity) => {
+  let querySTR = sql[alias];
+
+  // 만약 days에 데이터가 있다면 
+  if(days !== undefined) {
+    // days firstDay, lastDay 데이터를 삽입 시킨다.
+    sql.setTimeSQL(values, days, periodicity);
+
+    querySTR = sql.getBetweenTodosSTR();
+    console.log(querySTR);
+  }
+
+  return new Promise((resolve, reject) => connection.query(querySTR, values, (error, results) => {
     if(error) {
       reject({ error });
     }

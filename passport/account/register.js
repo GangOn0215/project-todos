@@ -38,7 +38,7 @@ module.exports = () => {
         user_pw: hashedPassword.toString('hex'),
         user_nickname: req.body.user_nickname,
         user_email: req.body.user_email,
-        user_register_datetime: timeSet(),
+        user_register_datetime: timeSet.getToday(true),
         user_register_ip: user_ip,
         salt: salt
       }

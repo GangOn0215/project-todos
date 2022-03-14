@@ -1,23 +1,15 @@
 <div class="todos-container">
   <div class="todos-header">
-    <div class="date-info">2022-01-22</div>
+    <div class="date-info">
+      <span id="date-day"></span>
+    </div>
   </div>
   <div class="todos-body">
+    <div class="todos-input-container">
+      <input type="text" id="todos-input">
+      <button id="todos-input-button">입력</button>
+    </div>
     <ul>
-      {{!--
-      <li>
-        <span>checking weather</span>
-        <i class="fas fa-trash-alt"></i>
-      </li>
-      <li>
-        <span>study english</span>
-        <i class="fas fa-trash-alt"></i>
-      </li>
-      <li>
-        <span>daily drink coffee</span>
-        <i class="fas fa-trash-alt"></i>
-      </li>
-      --}}
       {{#each todos}}
       <li>
         <span>{{this/content}}</span>
@@ -29,9 +21,51 @@
   <div class="todos-footer">
     test
   </div>
+  {{!-- layout.hbs에서 /js/common.js 를 호출하게 됩니다. --}}
+  {{!-- <script src="/js/common.js"></script> --}}
   <script>
+    
     const a = {{{json todos}}};
+    const today = getToday();
+    const dateInfoElement = document.getElementById('date-day');
+    const todosInputButtonElement = document.getElementById('todos-input-button');
+    const sendAjax = (url, data) => {
+      let sendData = { 
+        mem_id: '{{uid}}',
+        todo_content: data,
+        todo_daily: 1
+      }
 
-    console.log(a);
+      sendData = JSON.stringify(sendData);
+
+      const xhr = new XMLHttpRequest();
+
+      xhr.open('POST', url);
+      xhr.setRequestHeader('Content-type', "application/json");
+      xhr.send(sendData);
+
+      xhr.addEventListener('load', () => {
+        console.log('break');
+        console.log(xhr.responseText);
+
+        location.reload();
+      })
+    }
+
+    // document.getElementById('todos-input').value
+    dateInfoElement.innerHTML = today;
+
+    todosInputButtonElement.addEventListener('click', (e) => {
+      const todosInputValue = document.getElementById('todos-input').value;
+
+      if(todosInputValue === '') {
+        alert('todos input 폼이 Empty 입니다.');
+        return;
+      }
+
+      sendAjax('http://localhost:3000/rest/daily/insert', todosInputValue);
+
+    });
+    
   </script>
 </div>

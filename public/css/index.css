@@ -111,6 +111,9 @@ nav ul li {
   border: 1px solid black;
   height: calc(100% - 12.5em);
 }
+.date-info {
+  font-size: 1.2em;
+}
 .todos-container {
   width: 300px;
   height: 400px;
@@ -118,7 +121,7 @@ nav ul li {
   flex-direction: column;
   /* justify-content: center; */
   border: 1px solid black;
-  font-family: 'Dancing_Script';
+  font-family: 'DMSans-Regular';
 }
 .todos-container > * {
   border-bottom: 1px solid black;
@@ -150,6 +153,18 @@ nav ul li {
 }
 .todos-body ul li:last-child {
   border-bottom: 1px solid black;
+}
+.todos-input-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+#todos-input {
+  width: 80%;
+}
+#todos-input-button {
+  width: 18%;
 }
 .todos-footer {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

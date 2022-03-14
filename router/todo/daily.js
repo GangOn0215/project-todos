@@ -1,16 +1,15 @@
 const { router } = require('../../common');
-const controllerDaily = require('../../controller/todos/daily');
 const timeZon = require('../../common/timezon');
+const controllerTodos = require('../../controller/todos');
 
 router.get('/daily', async (req, res) => {
-  console.log('test', req.body);
-  console.log('daily.js loaded', req.user);
+  console.log('daily.js loaded, req.user: ', req.user);
   const reqUser = req.user;
   let   user_id = null;
   let   uid     = null;
   let   todos   = null;
 
-  console.log(reqUser);
+  // console.log(reqUser);
 
   if(reqUser) {
     user_id = reqUser.user_id;
@@ -18,10 +17,12 @@ router.get('/daily', async (req, res) => {
   }
 
   if(uid) {
-    let data = await controllerDaily.readTodoDatas(uid);
+    const today = timeZon.getToday();
+    const days = { firstDay: today, lastDay: today }
+    let data = await controllerTodos.readTodoDatas(uid, days, 'todo_daily');
     
     // 데이터 가공
-    console.log(data);
+    // console.log(data);
     
     todos = data.map((todo) => {
       return {
@@ -33,6 +34,7 @@ router.get('/daily', async (req, res) => {
   }
 
   res.status(200).render('todo/daily.hbs', {
+    uid: uid,
     user: user_id,
     todos: todos,
     helpers: {
@@ -44,32 +46,41 @@ router.get('/daily', async (req, res) => {
 });
 
 router.get('/rest/daily/all', async (req, res) => {
-  res.send(await controllerDaily.readTodoDatasAll());
+  res.send(await controllerTodos.readTodoDatasAll());
 })
 
 router.get('/rest/daily', async (req, res) => {
   const user = req.body.param;
-  const data = await controllerDaily.readTodoDatas(user.id);
+  const todayDate = timeZon.getToday();
+  const days = { firstDay: todayDate, lastDay: todayDate };
+  const data = await controllerTodos.readTodoDatas(user.id, days, 'todo_daily');
 
   res.send(data);
 });
 
 router.post('/rest/daily/insert', async (req, res) => {
   // const
-  const createQuery = req.body.param;
-  createQuery.todo_created_at = timeZon();
+  const createQuery = req.body;
+  console.log(req.body);
 
-  const result = await controllerDaily.createTodos(createQuery);
+  createQuery.todo_created_at = timeZon.getToday(true);
+
+  const result = await controllerTodos.createTodos(createQuery);
+
+  const responseData = {
+    'result': true,
+    'todo_id': result.insertId
+  }
   
-  console.log(result);
+  res.json(responseData);
 });
 
 router.put('/rest/daily/update', async (req, res) => {
   const updateQuery = req.body.param;
-  updateQuery[0].todo_last_update_at = timeZon();
+  updateQuery[0].todo_last_update_at = timeZon.getToday(true);
 
   console.log(updateQuery);
-  const result = await controllerDaily.updateTodos(updateQuery);
+  const result = await controllerTodos.updateTodos(updateQuery);
 
   console.log(result);
 });
@@ -77,7 +88,7 @@ router.put('/rest/daily/update', async (req, res) => {
 router.delete('/rest/daily/delete/:id', async (req, res) => {
   const {id} = req.params;    // 라우트 경로와 :id에 매핑되는 값
 
-  const result = await controllerDaily.deleteTodos(id);
+  const result = await controllerTodos.deleteTodos(id);
 
   console.log(result);
 });

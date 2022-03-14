@@ -1,0 +1,136 @@
+<html>
+  <head>
+    <title>:: JavaScript 매월 주차 구하기 ::</title>
+
+    <script type="text/javascript">
+      // 기준요일에 따른 주차구하는 함수.
+      // 해당 주차 / 해당주차 시작날짜 / 해당주차 끝나는날짜를 리턴.
+
+      function searchPeriodCalculation() {
+        let cYear = document.getElementById("choiceYear").value;
+
+        let cMonth =
+          document.getElementById("choiceMonth").value.replace(/(^0+)/, "") - 1;
+
+        // 날짜형으로 데이트 포맷
+        let date = new Date(cYear, cMonth);
+
+        // 월요일을 중심으로한 주차 구하기( JS기준 : 일요일 0 월요일 1 ~ 토요일 6 )
+        let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        let weekObj = null;
+        let weekObjArray = [];
+        let weekStand = 8; // 월요일 고정
+        let firstWeekEndDate = true;
+        let thisMonthFirstWeek = firstDay.getDay();
+
+        debugger;
+
+        for (var num = 1; num <= 6; num++) {
+          // 마지막월과 첫번째월이 다른경우 빠져나온다.
+          if (lastDay.getMonth() != firstDay.getMonth()) {
+            break;
+          }
+
+          weekObj = {};
+
+          // 한주의 시작일은 월의 첫번째 월요일로 설정
+          if (firstDay.getDay() <= 1) {
+            
+            // 한주의 시작일이 일요일이라면 날짜값을 하루 더해준다.
+            if (firstDay.getDay() === 0) {
+              firstDay.setDate(firstDay.getDate() + 1);
+            }
+
+            weekObj.weekStartDate = 
+              firstDay.getFullYear().toString() + "-" +
+              numberPad((firstDay.getMonth() + 1).toString(), 2) + "-" +
+              numberPad(firstDay.getDate().toString(), 2);
+
+          }
+
+          if (weekStand > thisMonthFirstWeek) {
+            if (firstWeekEndDate) {
+              if (weekStand - firstDay.getDay() == 1) {
+                firstDay.setDate(
+                  firstDay.getDate() + (weekStand - firstDay.getDay()) - 1
+                );
+              }
+
+              if (weekStand - firstDay.getDay() > 1) {
+                firstDay.setDate(
+                  firstDay.getDate() + (weekStand - firstDay.getDay()) - 1
+                );
+              }
+
+              firstWeekEndDate = false;
+            } else {
+              firstDay.setDate(firstDay.getDate() + 6);
+            }
+          } else {
+            firstDay.setDate(
+              firstDay.getDate() + (6 - firstDay.getDay()) + weekStand
+            );
+          }
+
+          // 월요일로 지정한 데이터가 존재하는 경우에만 마지막 일의 데이터를 담는다.
+
+          if (typeof weekObj.weekStartDate !== "undefined") {
+            weekObj.weekEndDate =
+              firstDay.getFullYear().toString() + "-" +
+              numberPad((firstDay.getMonth() + 1).toString(), 2) + "-" +
+              numberPad(firstDay.getDate().toString(), 2);
+
+            weekObjArray.push(weekObj);
+          }
+
+          firstDay.setDate(firstDay.getDate() + 1);
+          
+          debugger;
+        }
+
+        console.log(weekObjArray);
+      }
+
+      // 월, 일 날짜값 두자리( 00 )로 변경
+
+      function numberPad(num, width) {
+        num = String(num);
+
+        return num.length >= width ? num : new Array(width - num.length + 1).join("0") + num;
+      }
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <input
+        type="text"
+        id="choiceYear"
+        style="text-align: center"
+        value="2020"
+      />
+
+      &nbsp;년&nbsp;&nbsp;
+
+      <select id="choiceMonth">
+        <option value="01">01</option>
+        <option value="02">02</option>
+        <option value="03">03</option>
+        <option value="04">04</option>
+        <option value="05">05</option>
+        <option value="06">06</option>
+        <option value="07">07</option>
+        <option value="08">08</option>
+        <option value="09">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
+
+      &nbsp;월&nbsp;&nbsp;
+
+      <button type="button" onClick="searchPeriodCalculation( );">검색</button>
+    </div>
+  </body>
+</html>

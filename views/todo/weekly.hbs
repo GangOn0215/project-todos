@@ -1,14 +1,19 @@
 <div class="todos-container">
   <div class="todos-header">
-    <div class="date-info">2022-01-22</div>
+    <div class="date-info">
+      {{!-- 처음 보이는 주간은 현재 날짜의 기준으로 firstDay 와 lastDay로 보이게 됩니다. --}}
+      <span id="first-day"></span> 
+      ~
+      <span id="last-day"></span>
+    </div>
   </div>
   <div class="todos-body">
     <ul>
       {{#each todos}}
-      <li>
-        <span>{{todo}}</span>
-        <i class="fas fa-trash-alt"></i>
-      </li>
+        <li>
+          <span>{{this/content}}</span>
+          <i class="fas fa-trash-alt"></i>
+        </li>
       {{/each}}
     </ul>
   </div>
@@ -16,5 +21,12 @@
     test
   </div>
   <script>
+    const days = getWeekDay();
+
+    const firstDaySpanElement = document.getElementById('first-day');
+    const lastDaySpanElement  = document.getElementById('last-day');
+
+    firstDaySpanElement.innerText = days.firstDay;
+    lastDaySpanElement.innerText  = days.lastDay;
   </script>
 </div>

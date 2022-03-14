@@ -12,8 +12,11 @@ const readTodoDatasAll = async () => {
   return query('selectTodosAll');
 }
 
-const readTodoDatas = async (uid) => {
-  return query('selectTodos', uid);
+// uid: user primary id
+// days: {firstday: any, lastday: any}
+// periodicity: 주기성
+const readTodoDatas = async (uid, days, periodicity) => {
+  return query('selectBetweenTodos', uid, days, periodicity);
 }
 
 const createTodos = async (values) => {
