@@ -18,19 +18,21 @@ router.get('/daily', async (req, res) => {
 
   if(uid) {
     const today = timeZon.getToday();
-    const days = { firstDay: today, lastDay: today }
-    let data = await controllerTodos.readTodoDatas(uid, days, 'todo_daily');
+    const days  = { firstDay: today, lastDay: today };
+    let   data  = await controllerTodos.readTodoDatas(uid, days, 'todo_daily');
     
     // 데이터 가공
-    // console.log(data);
+    console.log(data[0].todo_checked);
     
     todos = data.map((todo) => {
       return {
         id: todo.id,
         content: todo.todo_content,
-        checked: todo.checked ? true : false
-      }
+        checked: todo.todo_checked ? 'checked' : ''
+      };
     });
+
+    // console.log(todos);
   }
 
   res.status(200).render('todo/daily.hbs', {
@@ -47,7 +49,7 @@ router.get('/daily', async (req, res) => {
 
 router.get('/rest/daily/all', async (req, res) => {
   res.send(await controllerTodos.readTodoDatasAll());
-})
+});
 
 router.get('/rest/daily', async (req, res) => {
   const user = req.body.param;
@@ -70,19 +72,23 @@ router.post('/rest/daily/insert', async (req, res) => {
   const responseData = {
     'result': true,
     'todo_id': result.insertId
-  }
+  };
   
   res.json(responseData);
 });
 
 router.put('/rest/daily/update', async (req, res) => {
-  const updateQuery = req.body.param;
+  const updateQuery = req.body;
   updateQuery[0].todo_last_update_at = timeZon.getToday(true);
+  
+  const result = await controllerTodos.updateTodos(updateQuery);
+  const responseData = {
+    'result': true
+  };
 
   console.log(updateQuery);
-  const result = await controllerTodos.updateTodos(updateQuery);
-
   console.log(result);
+  res.json(responseData);
 });
 
 router.delete('/rest/daily/delete/:id', async (req, res) => {
@@ -91,6 +97,12 @@ router.delete('/rest/daily/delete/:id', async (req, res) => {
   const result = await controllerTodos.deleteTodos(id);
 
   console.log(result);
+
+  const responseData = {
+    'result': true
+  };
+  
+  res.json(responseData);
 });
 
 module.exports = router;

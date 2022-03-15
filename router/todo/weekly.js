@@ -4,6 +4,7 @@ const controllerTodos = require('../../controller/todos');
 
 router.get('/weekly', async (req, res) => {
   console.log('weekly.js loaded, req.user: ', req.user);
+  
   const reqUser = req.user;
   let   user_id = null;
   let   uid     = null;
@@ -16,7 +17,7 @@ router.get('/weekly', async (req, res) => {
 
   if(uid) {
     const day = timeZon.getWeekDay();
-    const days = { firstDay: day.firstDay, lastDay: day.lastDay }
+    const days = { firstDay: day.firstDay, lastDay: day.lastDay };
 
     console.log(days);
     let data = await controllerTodos.readTodoDatas(uid, days, 'todo_weekly');
@@ -29,7 +30,7 @@ router.get('/weekly', async (req, res) => {
         id: todo.id,
         content: todo.todo_content,
         checked: todo.checked ? true : false
-      }
+      };
     });
 
     console.log(todos);
@@ -38,7 +39,7 @@ router.get('/weekly', async (req, res) => {
   res.status(200).render('todo/weekly.hbs', {
     user: user_id,
     todos: todos
-  })
+  });
 });
 
 module.exports = router;

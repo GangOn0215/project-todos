@@ -2,10 +2,11 @@ let selectBetweenTodos = null;
 
 const setTimeSQL = (uid, days, periodicity) => {
   selectBetweenTodos = `select * from todos where mem_id=${uid} and todo_created_at between '${days.firstDay} 00:00:00' and '${days.lastDay} 23:59:59' and ${periodicity}=1`
-}
+};
+
 const getBetweenTodosSTR = () => {
   return selectBetweenTodos;
-}
+};
 
 module.exports = {
   selectMembers:    `select * from member`,

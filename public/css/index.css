@@ -21,6 +21,14 @@
   font-family: 'DMSans-Regular';
   src: url('/font/DMSans-Regular.ttf');
 }
+@font-face {
+  font-family: 'Seoul_B';
+  src: url('/font/Seoul_L.ttf');
+}
+@font-face {
+  font-family: 'malgun';
+  src: url('/font/malgun.ttf');
+}
 header {
   height: auto;
   border: 1px solid black;
@@ -149,10 +157,17 @@ nav ul li {
   justify-content: space-between;
   border: 1px solid #444;
   border-bottom: none;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'malgun';
+}
+.todos-body ul li.checked {
+ text-decoration: line-through; 
+ color: #757575;
 }
 .todos-body ul li:last-child {
   border-bottom: 1px solid black;
+}
+.todos-body ul li span {
+  width: 100%;
 }
 .todos-input-container {
   display: flex;
@@ -164,6 +179,8 @@ nav ul li {
   width: 80%;
 }
 #todos-input-button {
+  background-color: white;
+  border: 1px solid rgb(111,111,111);
   width: 18%;
 }
 .todos-footer {

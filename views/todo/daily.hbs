@@ -11,9 +11,9 @@
     </div>
     <ul>
       {{#each todos}}
-      <li>
-        <span>{{this/content}}</span>
-        <i class="fas fa-trash-alt"></i>
+      <li data-todo-id="{{this/id}}" class="todo-lists {{this/checked}}">
+        <span class="todo-lists-span">{{this/content}}</span>
+        <i class="fas fa-trash-alt button-todo-del"></i>
       </li>
       {{/each}}
     </ul>
@@ -29,21 +29,18 @@
     const today = getToday();
     const dateInfoElement = document.getElementById('date-day');
     const todosInputButtonElement = document.getElementById('todos-input-button');
-    const sendAjax = (url, data) => {
-      let sendData = { 
-        mem_id: '{{uid}}',
-        todo_content: data,
-        todo_daily: 1
-      }
+    const todoListsElement = document.querySelectorAll('.todo-lists');
+    const todoListsSpanElements = document.querySelectorAll('.todo-lists-span');
+    const todoListDeleteBtnElements = document.querySelectorAll('.button-todo-del');
 
-      sendData = JSON.stringify(sendData);
+    const sendAjax = (xhrMethod, url, data) => {
+      sendData = JSON.stringify(data);
 
       const xhr = new XMLHttpRequest();
 
-      xhr.open('POST', url);
+      xhr.open(xhrMethod, url);
       xhr.setRequestHeader('Content-type', "application/json");
       xhr.send(sendData);
-
       xhr.addEventListener('load', () => {
         console.log('break');
         console.log(xhr.responseText);
@@ -52,9 +49,9 @@
       })
     }
 
-    // document.getElementById('todos-input').value
     dateInfoElement.innerHTML = today;
 
+    // input button 을 눌렀을 때 발생하는 이벤트
     todosInputButtonElement.addEventListener('click', (e) => {
       const todosInputValue = document.getElementById('todos-input').value;
 
@@ -63,9 +60,61 @@
         return;
       }
 
-      sendAjax('http://localhost:3000/rest/daily/insert', todosInputValue);
+      let sendData = { 
+        mem_id: '{{uid}}',
+        todo_content: todosInputValue,
+        todo_daily: 1
+      }
 
+      sendAjax('POST', 'http://localhost:3000/rest/daily/insert', sendData);
     });
     
+    /*
+    todoListsElement.forEach((item) => {
+      // Todos list item 을 클릭 했을때 발생하는 이벤트
+      item.addEventListener(('click'), (e) => {
+        debugger;
+        const todoID   = item.dataset.todoId;
+        const checked  = item.classList.contains('checked');
+        const sendData = [
+          { "todo_checked": checked ? 0 : 1 },
+          todoID
+        ];
+
+        item.classList.toggle('checked');
+        
+        console.log('checked', checked);
+
+        //sendAjax('PUT', 'http://localhost:3000/todo/rest/daily/update', sendData);
+      });
+    });
+    */
+    
+    todoListsSpanElements.forEach((item) => {
+      // Todos list item 을 클릭 했을때 발생하는 이벤트
+      item.addEventListener('click', (e) => {
+        const itemParentNode = e.currentTarget.parentNode;
+        const todoID   = itemParentNode.dataset.todoId;
+        const checked  = itemParentNode.classList.contains('checked');
+        const sendData = [
+          { "todo_checked": checked ? 0 : 1 },
+          todoID
+        ];
+
+        itemParentNode.classList.toggle('checked');
+
+        sendAjax('PUT', 'http://localhost:3000/todo/rest/daily/update', sendData);
+      })
+    });
+    
+    todoListDeleteBtnElements.forEach((item) => {
+      // Todos List Delete Button Click 할 때 발생하는 이벤트
+      item.addEventListener('click', (e) => {
+        const itemParentNode = e.currentTarget.parentNode;
+        const todoID   = itemParentNode.dataset.todoId;
+        
+        sendAjax('DELETE', `http://localhost:3000/todo/rest/daily/delete/${todoID}`);
+      })
+    })
   </script>
 </div>
