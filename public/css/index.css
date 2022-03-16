@@ -153,21 +153,39 @@ nav ul li {
 }
 .todos-body ul li {
   padding: 2px 4px;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
   border: 1px solid #444;
   border-bottom: none;
   font-family: 'malgun';
 }
-.todos-body ul li.checked {
+.todos-body ul li div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hide {
+  display: none !important;
+}
+.todos-body ul li.checked .todo-list-container span {
  text-decoration: line-through; 
  color: #757575;
 }
 .todos-body ul li:last-child {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(71, 53, 53);
 }
 .todos-body ul li span {
   width: 100%;
+}
+.todos-body ul li input {
+  width: 100%;
+  border: none;
+  margin-right: 10px;
+  /* border-bottom: 1px solid #333; */
+}
+.todos-body ul li input:focus {
+  outline: none;
 }
 .todos-input-container {
   display: flex;

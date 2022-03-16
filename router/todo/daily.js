@@ -22,7 +22,7 @@ router.get('/daily', async (req, res) => {
     let   data  = await controllerTodos.readTodoDatas(uid, days, 'todo_daily');
     
     // 데이터 가공
-    console.log(data[0].todo_checked);
+    // console.log(data[0].todo_checked);
     
     todos = data.map((todo) => {
       return {

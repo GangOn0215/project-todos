@@ -23,6 +23,7 @@ const query = async (alias, values, days, periodicity) => {
     console.log(querySTR);
   }
 
+  console.log(querySTR);
   return new Promise((resolve, reject) => connection.query(querySTR, values, (error, results) => {
     if(error) {
       reject({ error });
@@ -32,6 +33,6 @@ const query = async (alias, values, days, periodicity) => {
   })).catch((err) => {
     console.log(err);
   });
-}
+};
 
 module.exports = query;
