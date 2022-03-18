@@ -7,6 +7,7 @@ const passport = require('passport');
 const passportConfig = require('./passport/passport');
 const session = require('express-session');
 const flash = require('connect-flash');
+const cookieParser = require('cookie-parser');
 
 const router = require('./router/index');
 let session_json_file = require('./private/session.json');
@@ -14,6 +15,7 @@ session_json_file = JSON.parse(JSON.stringify(session_json_file));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(express.static('public'));
 app.engine(
   "hbs",

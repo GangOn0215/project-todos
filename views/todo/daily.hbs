@@ -1,8 +1,11 @@
 <div class="todos-container">
   <div class="todos-header">
+    <i class="fa-solid fa-angle-left"></i>
     <div class="date-info">
+      {{!-- <input type="date" id="date-day" value=""> --}}
       <span id="date-day"></span>
     </div>
+    <i class="fa-solid fa-angle-right"></i>
   </div>
   <div class="todos-body">
     <div class="todos-input-container">
@@ -13,6 +16,7 @@
       {{#each todos}}
       <li data-todo-id="{{this/id}}" class="todo-lists {{this/checked}}">
         <div class="todo-list-container">
+          <i class="fa-solid fa-check todo-check-icon hide"></i>
           <span class="todo-lists-span">{{this/content}}</span>
           <i class="fas fa-edit      button-todo-edit"></i>
           <i class="fas fa-trash-alt button-todo-delete"></i>
@@ -31,111 +35,5 @@
   </div>
   {{!-- layout.hbs에서 /js/common.js 를 호출하게 됩니다. --}}
   {{!-- <script src="/js/common.js"></script> --}}
-  <script>
-    
-    const a = {{{json todos}}};
-    const today = getToday();
-    const dateInfoElement = document.getElementById('date-day');
-    const todosInputButtonElement = document.getElementById('todos-input-button');
-    const todoListsElement = document.querySelectorAll('.todo-lists');
-    const todolistsSpanElements = document.querySelectorAll('.todo-lists-span');
-    const todolistDeleteBtnElements = document.querySelectorAll('.button-todo-delete');
-    const todolistEditBtnElements = document.querySelectorAll('.button-todo-edit');
-    const todolistEditUpdateBtnElements = document.querySelectorAll('.button-todo-edit-update')
-
-    const sendAjax = (xhrMethod, url, data) => {
-      sendData = JSON.stringify(data);
-
-      const xhr = new XMLHttpRequest();
-
-      xhr.open(xhrMethod, url);
-      xhr.setRequestHeader('Content-type', "application/json");
-      xhr.send(sendData);
-      xhr.addEventListener('load', () => {
-        console.log('break');
-        console.log(xhr.responseText);
-
-        location.reload();
-      })
-    }
-
-    dateInfoElement.innerHTML = today;
-
-    // input button Clicked Event
-    todosInputButtonElement.addEventListener('click', (e) => {
-      const todosInputValue = document.getElementById('todos-input').value;
-
-      if(todosInputValue === '') {
-        alert('todos input 폼이 Empty 입니다.');
-        return;
-      }
-
-      let sendData = { 
-        mem_id: '{{uid}}',
-        todo_content: todosInputValue,
-        todo_daily: 1
-      }
-
-      sendAjax('POST', 'http://localhost:3000/rest/daily/insert', sendData);
-    });
-
-    /*  Todo Clicked Event */
-    todolistsSpanElements.forEach((item) => {
-      // Todos list item 을 클릭 했을때 발생하는 이벤트
-      item.addEventListener('click', (e) => {
-        const itemParentNode = e.target.parentNode.parentNode;
-        const todoID   = itemParentNode.dataset.todoId;
-        const checked  = itemParentNode.classList.contains('checked');
-        const sendData = [
-          { "todo_checked": checked ? 0 : 1 },
-          todoID
-        ];
-
-        console.log(sendData);
-        itemParentNode.classList.toggle('checked');
-
-        sendAjax('PUT', 'http://localhost:3000/todo/rest/daily/update', sendData);
-      })
-    });
-    
-    /* Delete Event */
-    todolistDeleteBtnElements.forEach((item) => {
-      // Todos List Delete Button Click 할 때 발생하는 이벤트
-      item.addEventListener('click', (e) => {
-        const itemParentNode = e.target.parentNode.parentNode;
-        const todoID   = itemParentNode.dataset.todoId;
-        
-        sendAjax('DELETE', `http://localhost:3000/todo/rest/daily/delete/${todoID}`);
-      })
-    })
-
-    todolistEditBtnElements.forEach((item) => {
-      item.addEventListener('click', (e) => {
-        const itemParentNode = e.target.parentNode.parentNode;
-        const itemListNode = e.target.parentNode;
-        const itemEditNode = itemParentNode.children[1];
-
-        itemListNode.classList.toggle('hide');
-        itemEditNode.classList.toggle('hide');
-      })
-    })
-
-    todolistEditUpdateBtnElements.forEach((item) => {
-      item.addEventListener('click', (e) => {
-        const itemParentNode = e.target.parentNode.parentNode;
-        const itemEditValue  = e.target.parentNode.children[0].value;
-        const todoID         = itemParentNode.dataset.todoId;
-        e.target.parentNode.children[0]
-        
-        const sendData = [
-          { "todo_content":  itemEditValue },
-          todoID
-        ];
-        
-        console.log(sendData);
-        
-        sendAjax('PUT', 'http://localhost:3000/todo/rest/daily/update', sendData);
-      })
-    })
-  </script>
+  <script type="module" src="/js/daily.js"></script>
 </div>

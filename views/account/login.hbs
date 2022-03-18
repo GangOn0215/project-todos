@@ -33,7 +33,8 @@
 </div>
 
 <script>
-  window.onload = () => {
+  window.addEventListener('DOMContentLoaded', () => {
+    console.log('break 2');
     const user_id        = document.querySelector('#user_id');
     const user_pw        = document.querySelector('#user_pw');
     const btnLogin       = document.querySelector('.login-btn');
@@ -52,6 +53,7 @@
     // if clicked login-btn
     btnLogin.addEventListener('click', (e) => {
       
+      console.log('break');
       /**
        *
        *  FINISH 만약 로그인 버튼을 눌렀을때
@@ -71,6 +73,7 @@
         return;
       }
 
+      console.log('break');
       document.querySelector('.input-account').submit();
     });
 
@@ -90,6 +93,6 @@
     btnRegister.addEventListener('click', (e) => {
       window.location.href = '/account/register';
     });
+  });
 
-  }
 </script>

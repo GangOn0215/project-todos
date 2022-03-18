@@ -68,6 +68,7 @@ router.post('/rest/daily/insert', async (req, res) => {
   createQuery.todo_created_at = timeZon.getToday(true);
 
   const result = await controllerTodos.createTodos(createQuery);
+  console.log(result);
 
   const responseData = {
     'result': true,

@@ -1,6 +1,7 @@
 const setConvertTime = (date) => {
-  timezoneOffset = date.getTimezoneOffset() * 60000;
-  timezoneDate = new Date(date - timezoneOffset);
+  console.log(date.getTimezoneOffset());
+  const timezoneOffset = date.getTimezoneOffset() * 60000;
+  const timezoneDate = new Date(date - timezoneOffset);
   
   return timezoneDate.toISOString().slice(0, 19).replace('T', ' ').split(' ')[0];
 };
@@ -15,6 +16,11 @@ const timeZon = () => {
 
 const getToday = () => {
   return setConvertTime(new Date());
+};
+
+const getYesterDay = (date) => {
+  const yesterDay = new Date(date.setDate(date.getDate() - 1));
+  console.log(setConvertTime(yesterDay));
 };
 
 const getWeekDay = () => {
@@ -57,3 +63,9 @@ window.onload = () => {
     });
   }
 };
+
+export {
+  getToday,
+  getYesterDay,
+  getWeekDay
+}
